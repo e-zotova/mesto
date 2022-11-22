@@ -1,0 +1,40 @@
+@import url(/vendor/normalize.css);
+@import url(/vendor/fonts/Inter-web/inter.css);
+@import url(../blocks/page/page.css);
+
+/* imports for buttons */
+@import url(../blocks/button/button.css);
+@import url(../blocks/button/__edit/button__edit.css);
+@import url(../blocks/button/__add/button__add.css);
+@import url(../blocks/button/__save/button__save.css);
+@import url(../blocks/button/__close/button__close.css);
+
+/* imports for inputs */
+@import url(../blocks/input//input.css);
+
+/* imports for header*/
+@import url(../blocks/header/header.css);
+@import url(../blocks/header/__logo/header__logo.css);
+@import url(../blocks/header/__line/header__line.css);
+
+/* imports for profile*/
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__info/profile__info.css);
+@import url(../blocks/profile/__full-name/profile__full-name.css);
+@import url(../blocks/profile/__occupation/profile__occupation.css);
+
+/* imports for popup*/
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/__header/popup__header.css);
+
+/* imports for places grid*/
+@import url(../blocks/places-grid/places-grid.css);
+@import url(../blocks/places-grid/__card/places-grid__card.css);
+@import url(../blocks/places-grid/__item/places-grid__item.css);
+@import url(../blocks/places-grid/__name/places-grid__name.css);
+@import url(../blocks/places-grid/__like/places-grid__like.css);
+
+/* imports for footer*/
+@import url(../blocks/footer/footer.css);

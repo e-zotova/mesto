@@ -1,0 +1,17 @@
+.profile__full-name {
+  margin: 0;
+  align-self: center;
+  padding-bottom: 16px;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 48px;
+}
+
+@media screen and (max-width: 930px) {
+  .profile__full-name {
+    padding-top: 23px;
+    padding-bottom: 10px;
+    font-size: 27px;
+    line-height: 33px;
+  }
+}

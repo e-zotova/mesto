@@ -1,0 +1,9 @@
+.popup__container {
+  position: absolute;
+  top: 30vh;
+  left: 30vw;
+  max-width: 430px;
+  max-height: 330px;
+  background: #FFFFFF;
+  border-radius: 10px;
+}

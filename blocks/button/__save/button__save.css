@@ -1,0 +1,7 @@
+.button__save {
+  margin: 48px 36px 37px;
+  background-image: url(../../../images/save-button.svg);
+  width: 358px;
+  height: 50px;
+  background-size: cover;
+}
