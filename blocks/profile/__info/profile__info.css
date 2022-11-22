@@ -2,7 +2,6 @@
   padding-left: 30px;
   align-self: center;
   max-width: 500px;
-  overflow-wrap: break-word;
 }
 
 @media screen and (max-width: 630px) {

@@ -7,3 +7,9 @@
   background: #FFFFFF;
   border-radius: 10px;
 }
+
+@media screen and (max-width: 930px) {
+  .popup__container {
+    max-width: 282px;
+  }
+}

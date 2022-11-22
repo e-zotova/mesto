@@ -1,5 +1,6 @@
 .popup {
   background-color: black;
   opacity: .8;
-  display: none;
+  /* TODO: uncomment
+  display: none;*/
 }
