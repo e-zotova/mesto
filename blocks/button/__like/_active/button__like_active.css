@@ -1,0 +1,10 @@
+.button__like_active {
+  background: no-repeat url(../../../../images/like-button-active.svg);
+  height: 19px;
+  width: 22px;
+  padding-right: 20px;
+}
+
+.button__like_active:hover {
+  opacity: 1;
+}

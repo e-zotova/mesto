@@ -5,6 +5,10 @@
   height: 50px;
 }
 
+.button__save:hover {
+  opacity: .8;
+}
+
 @media screen and (max-width: 930px) {
   .button__save {
     margin-left: 22px;

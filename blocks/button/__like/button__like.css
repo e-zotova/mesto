@@ -1,0 +1,6 @@
+.button__like {
+  background: no-repeat url(../../../images/like-button.svg);
+  height: 19px;
+  width: 22px;
+  padding-right: 20px;
+}
