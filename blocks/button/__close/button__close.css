@@ -1,7 +1,5 @@
 .button__close {
-  position: fixed;
-  top: 16vh;
-  left: calc(75%);
+  grid-area: close;
   background-image: url(../../../images/close-icon.svg);
   width: 32px;
   height: 32px;
