@@ -32,7 +32,7 @@ saveButton.onclick = formSubmitHandler;
 function formSubmitHandler (evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
 
-  fullName.textContent = nameInput.value;
+  fullName.childNodes[0].textContent = nameInput.value;
   occupation.textContent = occupationInput.value;
   popup.classList.remove('popup_opened');
 }
