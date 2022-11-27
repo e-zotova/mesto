@@ -14,3 +14,10 @@
 .input:last-of-type {
   margin-bottom: 0;
 }
+
+@media screen and (max-width: 630px) {
+  .input {
+    max-width: 238px;
+    margin-left: 22px;
+  }
+}

@@ -1,4 +1,4 @@
-.profile__occupation {
+.profile__job {
   margin: 0;
   font-size: 18px;
   line-height: 22px;
@@ -8,9 +8,8 @@
 }
 
 @media screen and (max-width: 930px) {
-  .profile__occupation {
+  .profile__job {
     text-align: center;
-    padding-bottom: 36px;
     font-size: 14px;
     line-height: 17px;
   }

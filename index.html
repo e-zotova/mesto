@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto Russia</title>
   <link rel="icon" href="./images/mesto-icon.svg" type="image/svg">
+  <script async src="./scripts/index.js"></script>
   <link href="./pages/index.css" rel="stylesheet">
 </head>
 <body>
@@ -14,25 +15,26 @@
       <div class="header__line"></div>
     </header>
     <main class="content">
+      <div class="popup">
+        <form class="popup__container">
+          <h3 class="popup__header">Редактировать профиль</h3>
+          <input type="text" class="input input_type_full-name">
+          <input type="text" class="input input_type_job">
+          <button type="submit" class="button button__save"></button>
+          <div class="button button__close"></div>
+        </form>
+      </div>
       <section class="profile">
         <img class="profile__avatar" src="./images/profile-avatar.png" alt="">
         <div class="profile__info">
-          <h1 class="profile__full-name">Жак-Ив Кусто <div class="button button__edit"></div></h1>
-          <p class="profile__occupation">Исследователь океана</p>
+          <div class="profile__edit-name">
+            <h1 class="profile__full-name">Жак-Ив Кусто</h1>
+            <div class="button button__edit"></div>
+          </div>
+          <p class="profile__job">Исследователь океана</p>
         </div>
         <div class="button button__add"></div>
       </section>
-      <div class="popup">
-          <div class="popup__grid">
-            <div class="popup__container">
-              <h3 class="popup__header">Редактировать профиль</h3>
-              <input type="text" class="input input_type_full-name">
-              <input type="text" class="input input_type_occupation">
-              <button type="submit" class="button button__save"></button>
-            </div>
-            <div class="button button__close"></div>
-          </div>
-      </div>
       <section class="places-grid">
         <div class="places-grid__card">
           <img class="places-grid__photo" src="./images/grid-karachaevsk.png" alt="">
@@ -79,7 +81,7 @@
       </section>
     </main>
     <footer class="footer">&#169; 2022 Mesto Russia</footer>
+    </div>
   </div>
-  <script src="./index.js"></script>
 </body>
 </html>

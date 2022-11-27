@@ -23,19 +23,20 @@
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__info/profile__info.css);
+@import url(../blocks/profile/__edit-name/profile__edit-name.css);
 @import url(../blocks/profile/__full-name/profile__full-name.css);
-@import url(../blocks/profile/__occupation/profile__occupation.css);
+@import url(../blocks/profile/__job/profile__job.css);
 
 /* imports for popup*/
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
-@import url(../blocks/popup/__grid/popup__grid.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__header/popup__header.css);
 
 /* imports for places grid*/
 @import url(../blocks/places-grid/places-grid.css);
 @import url(../blocks/places-grid/__card/places-grid__card.css);
+@import url(../blocks/places-grid/__photo/place-grid__photo.css);
 @import url(../blocks/places-grid/__item/places-grid__item.css);
 @import url(../blocks/places-grid/__name/places-grid__name.css);
 

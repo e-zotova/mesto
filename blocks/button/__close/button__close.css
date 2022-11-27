@@ -1,7 +1,17 @@
 .button__close {
-  grid-area: close;
+  position: absolute;
+  top: -40px;
+  right: -40px;
   background-image: url(../../../images/close-icon.svg);
   width: 32px;
   height: 32px;
   background-size: cover;
+}
+
+@media screen and (max-width: 630px) {
+  .button__close {
+    width: 20px;
+    height: 20px;
+    right: 0;
+  }
 }
