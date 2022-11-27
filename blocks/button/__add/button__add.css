@@ -1,5 +1,5 @@
 .button__add {
-  background-image: url(../../../../images/add-button.svg);
+  background-image: url(../../../images/add-button.svg);
   width: 150px;
   height: 50px;
   margin-left: auto;
@@ -15,6 +15,6 @@
   .button__add {
     width: 282px;
     height: 50px;
-    background-image: url(../../../../images/add-button-big.svg);
+    background-image: url(../../../images/add-button-big.svg);
   }
 }
