@@ -26,7 +26,7 @@ function closeProfile() {
 function formSubmitHandler (evt) {
   evt.preventDefault();
 
-  fullName.childNodes[0].textContent = nameInput.value;
+  fullName.textContent = nameInput.value;
   job.textContent = jobInput.value;
   popup.classList.remove('popup_opened');
 }
