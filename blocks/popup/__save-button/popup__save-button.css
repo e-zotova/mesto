@@ -1,16 +1,16 @@
-.button__save {
+.popup__save-button {
   margin: 18px 36px 37px;
   background: no-repeat center/cover url(../../../images/save-button.svg);
   min-width: 358px;
   min-height: 50px;
 }
 
-.button__save:hover {
+.popup__save-button:hover {
   opacity: .8;
 }
 
 @media screen and (max-width: 630px) {
-  .button__save {
+  .popup__save-button {
     margin: 15px 22px 25px;
     min-width: 238px;
     min-height: 46px;

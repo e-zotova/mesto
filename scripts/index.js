@@ -1,12 +1,12 @@
 //variables
 const page = document.querySelector('.page');
-const editButton = page.querySelector('.button__edit');
+const editButton = page.querySelector('.profile__edit-button');
 const popup = page.querySelector('.popup');
 
 const formElement = document.querySelector('.popup__container');
 const nameInput = formElement.querySelector('.input_type_full-name');
 const jobInput = formElement.querySelector('.input_type_job');
-const closeButton = page.querySelector('.button__close');
+const closeButton = page.querySelector('.popup__close-button');
 
 const fullName = document.querySelector('.profile__name');
 const job = document.querySelector('.profile__job');
