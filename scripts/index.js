@@ -8,7 +8,7 @@ const nameInput = formElement.querySelector('.input_type_full-name');
 const jobInput = formElement.querySelector('.input_type_job');
 const closeButton = page.querySelector('.button__close');
 
-const fullName = document.querySelector('.profile__full-name');
+const fullName = document.querySelector('.profile__name');
 const job = document.querySelector('.profile__job');
 
 //functions
