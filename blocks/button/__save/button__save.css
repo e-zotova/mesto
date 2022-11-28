@@ -1,5 +1,5 @@
 .button__save {
-  margin: 40px 36px 37px;
+  margin: 18px 36px 37px;
   background: no-repeat center/cover url(../../../images/save-button.svg);
   width: 358px;
   height: 50px;
@@ -11,8 +11,7 @@
 
 @media screen and (max-width: 630px) {
   .button__save {
-    margin-left: 22px;
-    margin-right: 22px;
+    margin: 15px 22px 25px;
     width: 238px;
     height: 46px;
   }
