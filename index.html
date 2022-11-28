@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto Russia</title>
   <link rel="icon" href="./images/mesto-icon.svg" type="image/svg">
-  <script async src="./scripts/index.js"></script>
   <link href="./pages/index.css" rel="stylesheet">
 </head>
 <body>
@@ -15,17 +14,8 @@
       <div class="header__line"></div>
     </header>
     <main class="content">
-      <div class="popup">
-        <form class="popup__container">
-          <h3 class="popup__header">Редактировать профиль</h3>
-          <input type="text" class="input input_type_full-name">
-          <input type="text" class="input input_type_job">
-          <button type="submit" class="button button__save"></button>
-          <div class="button button__close"></div>
-        </form>
-      </div>
       <section class="profile">
-        <img class="profile__avatar" src="./images/profile-avatar.png" alt="">
+        <img class="profile__avatar" src="./images/profile-avatar.png" alt="Фото профиля.">
         <div class="profile__info">
           <div class="profile__edit-name">
             <h1 class="profile__full-name">Жак-Ив Кусто</h1>
@@ -35,46 +25,55 @@
         </div>
         <div class="button button__add"></div>
       </section>
+      <div class="popup">
+        <form class="popup__container">
+          <h3 class="popup__header">Редактировать профиль</h3>
+          <input type="text" class="input input_type_full-name">
+          <input type="text" class="input input_type_job">
+          <button type="submit" class="button button__save"></button>
+          <div class="button button__close"></div>
+        </form>
+      </div>
       <section class="places-grid">
         <div class="places-grid__card">
-          <img class="places-grid__photo" src="./images/grid-karachaevsk.png" alt="">
+          <img class="places-grid__photo" src="./images/grid-elbrus.jpg" alt="Вид на гору Эльбрус.">
           <div class="places-grid__item">
-            <div class="places-grid__name">Карачаевск</div>
+            <h2 class="places-grid__name">Гора Эльбрус</h2>
             <div class="button button__like"></div>
           </div>
         </div>
         <div class="places-grid__card">
-          <img class="places-grid__photo" src="./images/grid-elbrus.png" alt="">
+          <img class="places-grid__photo" src="./images/grid-dombai.jpg" alt="Заснеженные вершины Домбая.">
           <div class="places-grid__item">
-            <div class="places-grid__name">Гора Эльбрус</div>
+            <h2 class="places-grid__name">Домбай</h2>
             <div class="button button__like"></div>
           </div>
         </div>
         <div class="places-grid__card">
-          <img class="places-grid__photo" src="./images/grid-dombai.png" alt="">
+          <img class="places-grid__photo" src="./images/grid-kosa.jpg" alt="Берег Куршской косы.">
           <div class="places-grid__item">
-            <div class="places-grid__name">Домбай</div>
+            <h2 class="places-grid__name">Куршская коса</h2>
             <div class="button button__like"></div>
           </div>
         </div>
         <div class="places-grid__card">
-          <img class="places-grid__photo" src="./images/grid-elbrus.png" alt="">
+          <img class="places-grid__photo" src="./images/grid-altai.jpg" alt="Ноутбук на фоне леса.">
           <div class="places-grid__item">
-            <div class="places-grid__name">Гора Эльбрус</div>
+            <h2 class="places-grid__name">Алтай</h2>
             <div class="button button__like"></div>
           </div>
         </div>
         <div class="places-grid__card">
-          <img class="places-grid__photo" src="./images/grid-dombai.png" alt="">
+          <img class="places-grid__photo" src="./images/grid-baikal.jpg" alt="Лед на озере Байкал.">
           <div class="places-grid__item">
-            <div class="places-grid__name">Домбай</div>
+            <h2 class="places-grid__name">Байкал</h2>
             <div class="button button__like"></div>
           </div>
         </div>
         <div class="places-grid__card">
-          <img class="places-grid__photo" src="./images/grid-karachaevsk.png" alt="">
+          <img class="places-grid__photo" src="./images/grid-karachaevsk.jpg" alt="Сентинский храм в Карачаево-Черкессии.">
           <div class="places-grid__item">
-            <div class="places-grid__name">Карачаево-Черкессия</div>
+            <h2 class="places-grid__name">Карачаево-Черкессия</h2>
             <div class="button button__like"></div>
           </div>
         </div>
@@ -83,5 +82,6 @@
     <footer class="footer">&#169; 2022 Mesto Russia</footer>
     </div>
   </div>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 .places-grid__card {
-  max-width: 282px;
-  max-height: 360px;
-  background: #FFFFFF;
   border-radius: 10px;
+  overflow: hidden;
+  max-width: 282px;
+  min-height: 360px;
+  background: #FFFFFF;
 }

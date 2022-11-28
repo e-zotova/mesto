@@ -36,7 +36,7 @@
 /* imports for places grid*/
 @import url(../blocks/places-grid/places-grid.css);
 @import url(../blocks/places-grid/__card/places-grid__card.css);
-@import url(../blocks/places-grid/__photo/place-grid__photo.css);
+@import url(../blocks/places-grid/__photo/places-grid__photo.css);
 @import url(../blocks/places-grid/__item/places-grid__item.css);
 @import url(../blocks/places-grid/__name/places-grid__name.css);
 
