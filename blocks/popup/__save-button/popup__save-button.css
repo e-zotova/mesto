@@ -4,6 +4,10 @@
   min-width: 358px;
   min-height: 50px;
   border-radius: 2px;
+  color: white;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
 }
 
 .popup__save-button:hover {
