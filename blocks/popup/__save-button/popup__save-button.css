@@ -3,6 +3,7 @@
   background: no-repeat center/cover url(../../../images/save-button.svg);
   min-width: 358px;
   min-height: 50px;
+  border-radius: 2px;
 }
 
 .popup__save-button:hover {

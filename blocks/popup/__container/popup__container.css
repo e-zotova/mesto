@@ -1,11 +1,6 @@
 .popup__container {
-  position: fixed;
-  right: 0;
-  left: 0;
-  margin-left: auto;
-  margin-right: auto;
+  position: relative;
   max-width: 430px;
-  max-height: 330px;
   background: #FFFFFF;
   border-radius: 10px;
   z-index: 10;
