@@ -1,27 +1,33 @@
 const page = document.querySelector('.page');
 const editButton = page.querySelector('.profile__edit-button');
 const addButton = page.querySelector('.profile__add-button');
-const formElement = document.querySelector('.popup__form');
+const profileFormElement = document.querySelector('.popup__profile-form');
+const newCardFormElement = document.querySelector('.popup__new-card-form');
+
 
 //profile popup variables
 const profilePopup = page.querySelector('.popup_profile');
-const nameInput = formElement.querySelector('.input_type_full-name');
-const jobInput = formElement.querySelector('.input_type_job');
+const nameInput = profileFormElement.querySelector('.input_type_full-name');
+const jobInput = profileFormElement.querySelector('.input_type_job');
 const profileCloseButton = page.querySelector('.popup__profile-close-button');
 
 //profile variables
 const fullName = document.querySelector('.profile__name');
 const job = document.querySelector('.profile__job');
 
-//new place popup variables
+//new card popup variables
 const newCardPopup = page.querySelector('.popup_new-card');
-const placeNameInput = formElement.querySelector('.input_type_place-name');
-const placeImageInput = formElement.querySelector('.input_type_place-image');
+const placeNameInput = newCardFormElement.querySelector('.input_type_place-name');
+const placeImageInput = newCardFormElement.querySelector('.input_type_place-image');
 const newCardCloseButton = page.querySelector('.popup__new-card-close-button');
 
 //card variables
 const cardTemplate = document.querySelector('#card-template').content;
 const placesGrid = document.querySelector('.places-grid');
+
+const cardNameInput = newCardFormElement.querySelector('.input_type_place-name');
+const cardImageInput = newCardFormElement.querySelector('.input_type_place-image');
+
 
 const initialCards = [
   {
@@ -56,16 +62,21 @@ const initialCards = [
   }
 ];
 
-//add six cards on page load
-initialCards.forEach(function(element) {
-  const cardElement = cardTemplate.querySelector('.places-grid__card').cloneNode(true);
+//create card fuction
+function createCard(item) {
+  const cardElement = cardTemplate.cloneNode(true);
+  const cardImage = cardElement.querySelector('.places-grid__photo');
+  const cardName = cardElement.querySelector('.places-grid__name');
 
-  cardElement.querySelector('.places-grid__photo').src = element.link;
-  cardElement.querySelector('.places-grid__photo').alt = element.alt;
-  cardElement.querySelector('.places-grid__name').textContent = element.name;
+  cardName.textContent = item.name;
+  cardImage.src = item.link;
+  cardImage.alt = item.alt;
 
   placesGrid.append(cardElement);
-});
+};
+
+//add six cards on page load
+initialCards.forEach(element => createCard(element));
 
 //open and close profile
 function openProfile() {
@@ -87,8 +98,8 @@ function closeNewCard() {
   newCardPopup.classList.remove('popup_opened');
 }
 
-// form submit handler, but it's not yet sent anywhere
-function formSubmitHandler (evt) {
+//form submit handler, but it's not yet sent anywhere
+function profileFormSubmitHandler (evt) {
   evt.preventDefault();
 
   fullName.textContent = nameInput.value;
@@ -96,11 +107,26 @@ function formSubmitHandler (evt) {
   profilePopup.classList.remove('popup_opened');
 }
 
+//add new card with name and picture
+function cardFormSubmitHandler (evt) {
+  evt.preventDefault();
+  const cardElement = cardTemplate.cloneNode(true);
+  const cardImage = cardElement.querySelector('.places-grid__photo');
+  const cardName = cardElement.querySelector('.places-grid__name');
+
+  cardName.textContent = cardNameInput.value;
+  cardImage.src = cardImageInput.value;
+
+  placesGrid.append(cardElement);
+  newCardPopup.classList.remove('popup_opened');
+}
+
 //eventListeners for profile
 editButton.addEventListener('click', openProfile);
 profileCloseButton.addEventListener('click', closeProfile);
-formElement.addEventListener('submit', formSubmitHandler);
+profileFormElement.addEventListener('submit', profileFormSubmitHandler);
 
 //eventListeners for new place
 addButton.addEventListener('click', openNewCard);
 newCardCloseButton.addEventListener('click', closeNewCard);
+newCardFormElement.addEventListener('submit', cardFormSubmitHandler);
