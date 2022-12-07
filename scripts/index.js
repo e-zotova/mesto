@@ -1,17 +1,23 @@
-
 const page = document.querySelector('.page');
 const editButton = page.querySelector('.profile__edit-button');
-
-//popup variables
-const popup = page.querySelector('.popup');
+const addButton = page.querySelector('.profile__add-button');
 const formElement = document.querySelector('.popup__form');
+
+//profile popup variables
+const profilePopup = page.querySelector('.popup_profile');
 const nameInput = formElement.querySelector('.input_type_full-name');
 const jobInput = formElement.querySelector('.input_type_job');
-const closeButton = page.querySelector('.popup__close-button');
+const profileCloseButton = page.querySelector('.popup__profile-close-button');
 
 //profile variables
 const fullName = document.querySelector('.profile__name');
 const job = document.querySelector('.profile__job');
+
+//new place popup variables
+const newCardPopup = page.querySelector('.popup_new-card');
+const placeNameInput = formElement.querySelector('.input_type_place-name');
+const placeImageInput = formElement.querySelector('.input_type_place-image');
+const newCardCloseButton = page.querySelector('.popup__new-card-close-button');
 
 //card variables
 const cardTemplate = document.querySelector('#card-template').content;
@@ -63,13 +69,22 @@ initialCards.forEach(function(element) {
 
 //open and close profile
 function openProfile() {
-  popup.classList.add('popup_opened');
+  profilePopup.classList.add('popup_opened');
   nameInput.value = fullName.textContent;
   jobInput.value = job.textContent;
 }
 
 function closeProfile() {
-  popup.classList.remove('popup_opened');
+  profilePopup.classList.remove('popup_opened');
+}
+
+//open and close new card window
+function openNewCard() {
+  newCardPopup.classList.add('popup_opened');
+}
+
+function closeNewCard() {
+  newCardPopup.classList.remove('popup_opened');
 }
 
 // form submit handler, but it's not yet sent anywhere
@@ -78,10 +93,14 @@ function formSubmitHandler (evt) {
 
   fullName.textContent = nameInput.value;
   job.textContent = jobInput.value;
-  popup.classList.remove('popup_opened');
+  profilePopup.classList.remove('popup_opened');
 }
 
 //eventListeners for profile
 editButton.addEventListener('click', openProfile);
-closeButton.addEventListener('click', closeProfile);
+profileCloseButton.addEventListener('click', closeProfile);
 formElement.addEventListener('submit', formSubmitHandler);
+
+//eventListeners for new place
+addButton.addEventListener('click', openNewCard);
+newCardCloseButton.addEventListener('click', closeNewCard);
