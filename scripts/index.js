@@ -119,6 +119,8 @@ function cardFormSubmitHandler (evt) {
 
   placesGrid.prepend(cardElement);
   newCardPopup.classList.remove('popup_opened');
+  cardNameInput.value = '';
+  cardImageInput.value = '';
 }
 
 //eventListeners for profile
