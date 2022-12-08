@@ -117,7 +117,7 @@ function cardFormSubmitHandler (evt) {
   cardName.textContent = cardNameInput.value;
   cardImage.src = cardImageInput.value;
 
-  placesGrid.append(cardElement);
+  placesGrid.prepend(cardElement);
   newCardPopup.classList.remove('popup_opened');
 }
 
