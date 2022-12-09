@@ -71,6 +71,7 @@ function createCard(item) {
   const imagePopup = cardElement.querySelector('.popup__image-view');
   const bigImage = cardElement.querySelector('.places__image_big');
   const imageCloseButton = cardElement.querySelector('.popup__image-close-button');
+  const caption = cardElement.querySelector('.places__caption');
 
   cardName.textContent = item.name;
   cardImage.src = item.link;
@@ -88,6 +89,7 @@ function createCard(item) {
   function openImageView() {
     imagePopup.classList.add('popup_opened');
     bigImage.src = item.link;
+    caption.textContent = item.name;
   }
 
   function closeImageView() {
@@ -146,6 +148,7 @@ function cardFormSubmitHandler (evt) {
   const imagePopup = cardElement.querySelector('.popup__image-view');
   const bigImage = cardElement.querySelector('.places__image_big');
   const imageCloseButton = cardElement.querySelector('.popup__image-close-button');
+  const caption = cardElement.querySelector('.places__caption');
 
   cardName.textContent = cardNameInput.value;
   cardImage.src = cardImageInput.value;
@@ -162,6 +165,7 @@ function cardFormSubmitHandler (evt) {
   function openImageView() {
     imagePopup.classList.add('popup_opened');
     bigImage.src = cardImage.src;
+    caption.textContent = cardName.textContent;
   }
 
   function closeImageView() {
