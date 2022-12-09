@@ -125,9 +125,20 @@ function cardFormSubmitHandler (evt) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector('.places__photo');
   const cardName = cardElement.querySelector('.places__name');
+  const likeButton = cardElement.querySelector('.places__like-button');
+  const deleteButton = cardElement.querySelector('.places__delete-button');
 
   cardName.textContent = cardNameInput.value;
   cardImage.src = cardImageInput.value;
+
+  likeButton.addEventListener('click', function (evt) {
+    evt.target.classList.toggle('places__like-button_active');
+  });
+
+  deleteButton.addEventListener('click', function (evt) {
+    const listItem = deleteButton.closest('.places__card');
+    listItem.remove();
+  });
 
   places.prepend(cardElement);
   newCardPopup.classList.remove('popup_opened');
