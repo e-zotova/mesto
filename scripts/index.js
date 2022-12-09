@@ -4,7 +4,6 @@ const addButton = page.querySelector('.profile__add-button');
 const profileFormElement = document.querySelector('.popup__profile-form');
 const newCardFormElement = document.querySelector('.popup__new-card-form');
 
-
 //profile popup variables
 const profilePopup = page.querySelector('.popup_profile');
 const nameInput = profileFormElement.querySelector('.input_type_full-name');
@@ -22,9 +21,6 @@ const placeImageInput = newCardFormElement.querySelector('.input_type_place-imag
 const newCardCloseButton = page.querySelector('.popup__new-card-close-button');
 const cardNameInput = newCardFormElement.querySelector('.input_type_place-name');
 const cardImageInput = newCardFormElement.querySelector('.input_type_place-image');
-
-//image popup
-const imagePopup = page.querySelector('.popup_');
 
 //card variables
 const cardTemplate = document.querySelector('#card-template').content;
@@ -71,6 +67,8 @@ function createCard(item) {
   const cardName = cardElement.querySelector('.places__name');
   const likeButton = cardElement.querySelector('.places__like-button');
   const deleteButton = cardElement.querySelector('.places__delete-button');
+  const imageButton = cardElement.querySelector('.places__image');
+  const imagePopup = cardElement.querySelector('.places__image-view');
 
   cardName.textContent = item.name;
   cardImage.src = item.link;
@@ -84,6 +82,12 @@ function createCard(item) {
     const listItem = deleteButton.closest('.places__card');
     listItem.remove();
   });
+
+  function openImageView() {
+    imagePopup.classList.add('places__image-view_opened');
+  }
+
+  imageButton.addEventListener('click', openImageView);
 
   places.append(cardElement);
 };
@@ -112,17 +116,6 @@ function closeNewCard() {
   newCardPopup.classList.remove('popup_opened');
 }
 
-//open and close image
-function openImageView() {
-  profilePopup.classList.add('');
-  nameInput.value = fullName.textContent;
-  jobInput.value = job.textContent;
-}
-
-function closeImageView() {
-  profilePopup.classList.remove('popup_opened');
-}
-
 //form submit handler, but it's not yet sent anywhere
 function profileFormSubmitHandler (evt) {
   evt.preventDefault();
@@ -140,6 +133,8 @@ function cardFormSubmitHandler (evt) {
   const cardName = cardElement.querySelector('.places__name');
   const likeButton = cardElement.querySelector('.places__like-button');
   const deleteButton = cardElement.querySelector('.places__delete-button');
+  const imageButton = cardElement.querySelector('.places__image');
+  const imagePopup = cardElement.querySelector('.places__image-view');
 
   cardName.textContent = cardNameInput.value;
   cardImage.src = cardImageInput.value;
@@ -152,6 +147,12 @@ function cardFormSubmitHandler (evt) {
     const listItem = deleteButton.closest('.places__card');
     listItem.remove();
   });
+
+  function openImageView() {
+    imagePopup.classList.add('places__image-view_opened');
+  }
+
+  imageButton.addEventListener('click', openImageView);
 
   places.prepend(cardElement);
   newCardPopup.classList.remove('popup_opened');
@@ -169,3 +170,5 @@ profileFormElement.addEventListener('submit', profileFormSubmitHandler);
 addButton.addEventListener('click', openNewCard);
 newCardCloseButton.addEventListener('click', closeNewCard);
 newCardFormElement.addEventListener('submit', cardFormSubmitHandler);
+
+//eventListener for image popup
