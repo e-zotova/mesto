@@ -1,10 +1,10 @@
-.places-grid__like-button {
+.places__like-button {
   background: no-repeat url(../../../images/like-button.svg);
   min-height: 19px;
   min-width: 22px;
   margin-right: 20px;
 }
 
-.places-grid__like-button:hover {
+.places__like-button:hover {
   opacity: .5;
 }

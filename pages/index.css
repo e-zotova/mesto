@@ -26,14 +26,14 @@
 @import url(../blocks/popup/__save-button/popup__save-button.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
 
-/* imports for places grid*/
-@import url(../blocks/places-grid/places-grid.css);
-@import url(../blocks/places-grid/__card/places-grid__card.css);
-@import url(../blocks/places-grid/__photo/places-grid__photo.css);
-@import url(../blocks/places-grid/__item/places-grid__item.css);
-@import url(../blocks/places-grid/__name/places-grid__name.css);
-@import url(../blocks/places-grid/__like-button/places-grid__like-button.css);
-@import url(../blocks/places-grid/__like-button/_active/places-grid__like-button_active.css);
+/* imports for places */
+@import url(../blocks/places/places.css);
+@import url(../blocks/places/__card/places__card.css);
+@import url(../blocks/places/__photo/places__photo.css);
+@import url(../blocks/places/__item/places__item.css);
+@import url(../blocks/places/__name/places__name.css);
+@import url(../blocks/places/__like-button/places__like-button.css);
+@import url(../blocks/places/__like-button/_active/places__like-button_active.css);
 
 /* imports for footer*/
 @import url(../blocks/footer/footer.css);

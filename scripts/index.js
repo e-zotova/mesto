@@ -26,7 +26,7 @@ const cardImageInput = newCardFormElement.querySelector('.input_type_place-image
 
 //card variables
 const cardTemplate = document.querySelector('#card-template').content;
-const placesGrid = document.querySelector('.places-grid');
+const places = document.querySelector('.places');
 
 
 const initialCards = [
@@ -65,19 +65,19 @@ const initialCards = [
 //create card fuction
 function createCard(item) {
   const cardElement = cardTemplate.cloneNode(true);
-  const cardImage = cardElement.querySelector('.places-grid__photo');
-  const cardName = cardElement.querySelector('.places-grid__name');
-  const likeButton = cardElement.querySelector('.places-grid__like-button');
+  const cardImage = cardElement.querySelector('.places__photo');
+  const cardName = cardElement.querySelector('.places__name');
+  const likeButton = cardElement.querySelector('.places__like-button');
 
   cardName.textContent = item.name;
   cardImage.src = item.link;
   cardImage.alt = item.alt;
 
   likeButton.addEventListener('click', function (event) {
-    event.target.classList.toggle('places-grid__like-button_active');
+    event.target.classList.toggle('places__like-button_active');
   });
 
-  placesGrid.append(cardElement);
+  places.append(cardElement);
 };
 
 //add six cards on page load
@@ -117,13 +117,13 @@ function profileFormSubmitHandler (evt) {
 function cardFormSubmitHandler (evt) {
   evt.preventDefault();
   const cardElement = cardTemplate.cloneNode(true);
-  const cardImage = cardElement.querySelector('.places-grid__photo');
-  const cardName = cardElement.querySelector('.places-grid__name');
+  const cardImage = cardElement.querySelector('.places__photo');
+  const cardName = cardElement.querySelector('.places__name');
 
   cardName.textContent = cardNameInput.value;
   cardImage.src = cardImageInput.value;
 
-  placesGrid.prepend(cardElement);
+  places.prepend(cardElement);
   newCardPopup.classList.remove('popup_opened');
   cardNameInput.value = '';
   cardImageInput.value = '';
