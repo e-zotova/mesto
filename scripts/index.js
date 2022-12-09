@@ -68,13 +68,19 @@ function createCard(item) {
   const cardImage = cardElement.querySelector('.places__photo');
   const cardName = cardElement.querySelector('.places__name');
   const likeButton = cardElement.querySelector('.places__like-button');
+  const deleteButton = cardElement.querySelector('.places__delete-button');
 
   cardName.textContent = item.name;
   cardImage.src = item.link;
   cardImage.alt = item.alt;
 
-  likeButton.addEventListener('click', function (event) {
-    event.target.classList.toggle('places__like-button_active');
+  likeButton.addEventListener('click', function (evt) {
+    evt.target.classList.toggle('places__like-button_active');
+  });
+
+  deleteButton.addEventListener('click', function (evt) {
+    const listItem = deleteButton.closest('.places__card');
+    listItem.remove();
   });
 
   places.append(cardElement);
