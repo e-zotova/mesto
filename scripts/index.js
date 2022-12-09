@@ -23,6 +23,8 @@ const newCardCloseButton = page.querySelector('.popup__new-card-close-button');
 const cardNameInput = newCardFormElement.querySelector('.input_type_place-name');
 const cardImageInput = newCardFormElement.querySelector('.input_type_place-image');
 
+//image popup
+const imagePopup = page.querySelector('.popup_');
 
 //card variables
 const cardTemplate = document.querySelector('#card-template').content;
@@ -65,7 +67,7 @@ const initialCards = [
 //create card fuction
 function createCard(item) {
   const cardElement = cardTemplate.cloneNode(true);
-  const cardImage = cardElement.querySelector('.places__photo');
+  const cardImage = cardElement.querySelector('.places__image');
   const cardName = cardElement.querySelector('.places__name');
   const likeButton = cardElement.querySelector('.places__like-button');
   const deleteButton = cardElement.querySelector('.places__delete-button');
@@ -110,6 +112,17 @@ function closeNewCard() {
   newCardPopup.classList.remove('popup_opened');
 }
 
+//open and close image
+function openImageView() {
+  profilePopup.classList.add('');
+  nameInput.value = fullName.textContent;
+  jobInput.value = job.textContent;
+}
+
+function closeImageView() {
+  profilePopup.classList.remove('popup_opened');
+}
+
 //form submit handler, but it's not yet sent anywhere
 function profileFormSubmitHandler (evt) {
   evt.preventDefault();
@@ -123,7 +136,7 @@ function profileFormSubmitHandler (evt) {
 function cardFormSubmitHandler (evt) {
   evt.preventDefault();
   const cardElement = cardTemplate.cloneNode(true);
-  const cardImage = cardElement.querySelector('.places__photo');
+  const cardImage = cardElement.querySelector('.places__image');
   const cardName = cardElement.querySelector('.places__name');
   const likeButton = cardElement.querySelector('.places__like-button');
   const deleteButton = cardElement.querySelector('.places__delete-button');
