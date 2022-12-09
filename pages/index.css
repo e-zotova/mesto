@@ -30,8 +30,7 @@
 @import url(../blocks/places/places.css);
 @import url(../blocks/places/__card/places__card.css);
 @import url(../blocks/places/__image/places__image.css);
-@import url(../blocks/places/__image-view/places__image-view.css);
-@import url(../blocks/places/__image-view/_opened/places__image-view_opened.css);
+@import url(../blocks/popup/__container/_image/popup__container_image.css);
 @import url(../blocks/places/__image/_big/places__image_big.css);
 @import url(../blocks/places/__item/places__item.css);
 @import url(../blocks/places/__name/places__name.css);

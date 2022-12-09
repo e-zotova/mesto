@@ -68,7 +68,9 @@ function createCard(item) {
   const likeButton = cardElement.querySelector('.places__like-button');
   const deleteButton = cardElement.querySelector('.places__delete-button');
   const imageButton = cardElement.querySelector('.places__image');
-  const imagePopup = cardElement.querySelector('.places__image-view');
+  const imagePopup = cardElement.querySelector('.popup__image-view');
+  const bigImage = cardElement.querySelector('.places__image_big');
+  const imageCloseButton = cardElement.querySelector('.popup__image-close-button');
 
   cardName.textContent = item.name;
   cardImage.src = item.link;
@@ -84,10 +86,16 @@ function createCard(item) {
   });
 
   function openImageView() {
-    imagePopup.classList.add('places__image-view_opened');
+    imagePopup.classList.add('popup_opened');
+    bigImage.src = item.link;
+  }
+
+  function closeImageView() {
+    imagePopup.classList.remove('popup_opened');
   }
 
   imageButton.addEventListener('click', openImageView);
+  imageCloseButton.addEventListener('click', closeImageView);
 
   places.append(cardElement);
 };
@@ -110,6 +118,7 @@ function closeProfile() {
 //open and close new card window
 function openNewCard() {
   newCardPopup.classList.add('popup_opened');
+
 }
 
 function closeNewCard() {
@@ -134,7 +143,9 @@ function cardFormSubmitHandler (evt) {
   const likeButton = cardElement.querySelector('.places__like-button');
   const deleteButton = cardElement.querySelector('.places__delete-button');
   const imageButton = cardElement.querySelector('.places__image');
-  const imagePopup = cardElement.querySelector('.places__image-view');
+  const imagePopup = cardElement.querySelector('.popup__image-view');
+  const bigImage = cardElement.querySelector('.places__image_big');
+  const imageCloseButton = cardElement.querySelector('.popup__image-close-button');
 
   cardName.textContent = cardNameInput.value;
   cardImage.src = cardImageInput.value;
@@ -149,10 +160,16 @@ function cardFormSubmitHandler (evt) {
   });
 
   function openImageView() {
-    imagePopup.classList.add('places__image-view_opened');
+    imagePopup.classList.add('popup_opened');
+    bigImage.src = cardImage.src;
+  }
+
+  function closeImageView() {
+    imagePopup.classList.remove('popup_opened');
   }
 
   imageButton.addEventListener('click', openImageView);
+  imageCloseButton.addEventListener('click', closeImageView);
 
   places.prepend(cardElement);
   newCardPopup.classList.remove('popup_opened');
@@ -171,4 +188,3 @@ addButton.addEventListener('click', openNewCard);
 newCardCloseButton.addEventListener('click', closeNewCard);
 newCardFormElement.addEventListener('submit', cardFormSubmitHandler);
 
-//eventListener for image popup
