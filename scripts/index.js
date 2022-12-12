@@ -61,24 +61,17 @@ const createCard = (name, link, alt = '') => {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector('.places__image');
   const cardName = cardElement.querySelector('.places__name');
+  const likeButton = cardElement.querySelector('.places__like-button');
+  const deleteButton = cardElement.querySelector('.places__delete-button');
+  const imageButton = cardElement.querySelector('.places__image');
+  const closeButton = cardElement.querySelector('.popup__close-button');
+  const imagePopup = cardElement.querySelector('.popup__image-view');
+  const bigImage = cardElement.querySelector('.places__image_big');
+  const caption = cardElement.querySelector('.places__caption');
 
   cardName.textContent = name;
   cardImage.src = link;
   cardImage.alt = alt;
-
-  createCardButtons(cardElement, name, link);
-
-  return cardElement;
-};
-
-const createCardButtons = (element, name, link) => {
-  const likeButton = element.querySelector('.places__like-button');
-  const deleteButton = element.querySelector('.places__delete-button');
-  const imageButton = element.querySelector('.places__image');
-  const closeButton = element.querySelector('.popup__close-button');
-  const imagePopup = element.querySelector('.popup__image-view');
-  const bigImage = element.querySelector('.places__image_big');
-  const caption = element.querySelector('.places__caption');
 
   likeButton.addEventListener('click', function (evt) {
     evt.target.classList.toggle('places__like-button_active');
@@ -88,17 +81,17 @@ const createCardButtons = (element, name, link) => {
     evt.target.closest('.places__card').remove();
   });
 
-  imageButton.addEventListener('click', function (evt) {
+  imageButton.addEventListener('click', () => {
     openPopup(imagePopup);
     bigImage.src = link;
     caption.textContent = name;
   });
 
-  closeButton.addEventListener('click', function (evt) {
+  closeButton.addEventListener('click', () => {
     closePopup(imagePopup);
   });
 
-  return element;
+  return cardElement;
 };
 
 //add cards on page load
@@ -125,7 +118,7 @@ closeButtons.forEach(button => {
 });
 
 //open profile
-editButton.addEventListener('click', function() {
+editButton.addEventListener('click', () => {
   openPopup(profilePopup);
   nameInput.value = fullName.textContent;
   jobInput.value = job.textContent;
@@ -143,7 +136,7 @@ function profileFormSubmitHandler (evt) {
 profileFormElement.addEventListener('submit', profileFormSubmitHandler);
 
 //open new card
-addButton.addEventListener('click', function() {
+addButton.addEventListener('click', () => {
   openPopup(newCardPopup);
 });
 
