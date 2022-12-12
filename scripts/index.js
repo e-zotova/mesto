@@ -55,6 +55,23 @@ const initialCards = [
   }
 ];
 
+//open popup
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+}
+
+//close popup
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+}
+
+//close button listener
+closeButtons.forEach(button => {
+  button.addEventListener('click', function(evt) {
+    closePopup(evt.path[2]);
+  });
+});
+
 //create card
 const createCard = (name, link, alt = '') => {
   const cardTemplate = page.querySelector('#card-template').content;
@@ -100,23 +117,6 @@ initialCards.forEach(function(element) {
     createCard(element.name, element.link, element.alt));
 });
 
-//open popup
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-}
-
-//close popup
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-}
-
-//close button listener
-closeButtons.forEach(button => {
-  button.addEventListener('click', function(evt) {
-    closePopup(evt.path[2]);
-  });
-});
-
 //open profile
 editButton.addEventListener('click', () => {
   openPopup(profilePopup);
@@ -125,7 +125,7 @@ editButton.addEventListener('click', () => {
 });
 
 //submit profile
-function profileFormSubmitHandler (evt) {
+function submitProfileForm (evt) {
   evt.preventDefault();
 
   fullName.textContent = nameInput.value;
@@ -133,7 +133,7 @@ function profileFormSubmitHandler (evt) {
   closePopup(profilePopup);
 }
 
-profileFormElement.addEventListener('submit', profileFormSubmitHandler);
+profileFormElement.addEventListener('submit', submitProfileForm);
 
 //open new card
 addButton.addEventListener('click', () => {
@@ -141,7 +141,7 @@ addButton.addEventListener('click', () => {
 });
 
 //submit new card
-function newCardFormSubmitHandler (evt) {
+function submitNewCardForm(evt) {
   evt.preventDefault();
 
   places.prepend(createCard(cardNameInput.value, cardImageInput.value, cardNameInput.value));
@@ -150,4 +150,4 @@ function newCardFormSubmitHandler (evt) {
   cardImageInput.value = '';
 }
 
-newCardFormElement.addEventListener('submit', newCardFormSubmitHandler);
+newCardFormElement.addEventListener('submit', submitNewCardForm);
