@@ -107,11 +107,12 @@ initialCards.forEach(function(element) {
     createCard(element.name, element.link, element.alt));
 });
 
-//open and close popup
+//open popup
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
 
+//close popup
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
