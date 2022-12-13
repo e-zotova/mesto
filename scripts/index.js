@@ -68,7 +68,7 @@ function closePopup(popup) {
 //close button listener
 closeButtons.forEach(button => {
   button.addEventListener('click', function(evt) {
-    closePopup(evt.composedPath()[2]);
+    closePopup(evt.target.closest('.popup'));
   });
 });
 
