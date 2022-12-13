@@ -21,6 +21,10 @@ const newCardFormElement = page.querySelector('.popup__new-card-form');
 const cardNameInput = newCardFormElement.querySelector('.input_type_place-name');
 const cardImageInput = newCardFormElement.querySelector('.input_type_place-image');
 
+const imagePopup = page.querySelector('.popup__image-view');
+const bigImage = page.querySelector('.places__image_big');
+const caption = page.querySelector('.places__caption');
+
 //initial cards array
 const initialCards = [
   {
@@ -73,18 +77,13 @@ closeButtons.forEach(button => {
 });
 
 //create card
-const createCard = (name, link, alt = '') => {
+const createCard = (name, link, alt = name) => {
   const cardTemplate = page.querySelector('#card-template').content;
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector('.places__image');
   const cardName = cardElement.querySelector('.places__name');
   const likeButton = cardElement.querySelector('.places__like-button');
   const deleteButton = cardElement.querySelector('.places__delete-button');
-  const imageButton = cardElement.querySelector('.places__image');
-  const closeButton = cardElement.querySelector('.popup__close-button');
-  const imagePopup = cardElement.querySelector('.popup__image-view');
-  const bigImage = cardElement.querySelector('.places__image_big');
-  const caption = cardElement.querySelector('.places__caption');
 
   cardName.textContent = name;
   cardImage.src = link;
@@ -98,14 +97,11 @@ const createCard = (name, link, alt = '') => {
     evt.target.closest('.places__card').remove();
   });
 
-  imageButton.addEventListener('click', () => {
+  cardImage.addEventListener('click', function () {
     openPopup(imagePopup);
     bigImage.src = link;
+    bigImage.alt = name;
     caption.textContent = name;
-  });
-
-  closeButton.addEventListener('click', () => {
-    closePopup(imagePopup);
   });
 
   return cardElement;

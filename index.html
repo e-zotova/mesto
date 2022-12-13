@@ -7,7 +7,7 @@
   <link rel="icon" href="./images/mesto-icon.svg" type="image/svg">
   <link href="./pages/index.css" rel="stylesheet">
 </head>
-<body>
+<body class="main">
   <div class="page">
     <header class="header">
       <img class="header__logo" src="./images/header-logo.svg" alt="Логотип Место Россия">
@@ -35,6 +35,15 @@
           <button type="reset" aria-label="Закрыть" class="button popup__close-button"></button>
         </div>
       </div>
+      <div class="popup popup__image-view">
+        <div class="popup__container_image">
+          <figure class="places__figure">
+            <img class="places__image_big">
+            <figcaption class="places__caption"></figcaption>
+          </figure>
+          <button type="reset" aria-label="Закрыть" class="button popup__close-button"></button>
+        </div>
+      </div>
       <section class="profile">
         <img class="profile__avatar" src="./images/profile-avatar.jpg" alt="Фото профиля.">
         <div class="profile__info">
@@ -51,15 +60,6 @@
           <article class="places__card">
             <div class="button places__delete-button"> </div>
             <img class="button places__image">
-            <div class="popup popup__image-view">
-              <div class="popup__container_image">
-                <figure class="places__figure">
-                  <img class="places__image_big">
-                  <figcaption class="places__caption"></figcaption>
-                </figure>
-                <button type="reset" aria-label="Закрыть" class="button popup__close-button"></button>
-              </div>
-            </div>
             <div class="places__item">
               <h2 class="places__name"></h2>
               <button type="button" aria-label="Добавить в избранное" class="button places__like-button"></button>
