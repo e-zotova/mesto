@@ -21,6 +21,7 @@ const newCardFormElement = page.querySelector('.popup__new-card-form');
 const cardNameInput = newCardFormElement.querySelector('.input_type_place-name');
 const cardImageInput = newCardFormElement.querySelector('.input_type_place-image');
 
+//image popup variables
 const imagePopup = page.querySelector('.popup__image-view');
 const bigImage = page.querySelector('.places__image_big');
 const caption = page.querySelector('.places__caption');
@@ -142,8 +143,7 @@ function submitNewCardForm(evt) {
 
   places.prepend(createCard(cardNameInput.value, cardImageInput.value, cardNameInput.value));
   closePopup(newCardPopup);
-  cardNameInput.value = '';
-  cardImageInput.value = '';
+  evt.target.reset();
 }
 
 newCardFormElement.addEventListener('submit', submitNewCardForm);
