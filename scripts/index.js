@@ -22,9 +22,9 @@ const cardNameInput = newCardFormElement.querySelector('.input_type_place-name')
 const cardImageInput = newCardFormElement.querySelector('.input_type_place-image');
 
 //image popup variables
-const imagePopup = page.querySelector('.popup__image-view');
+const imagePopup = page.querySelector('.popup_image-view');
 const bigImage = page.querySelector('.places__image_big');
-const caption = page.querySelector('.places__caption');
+const caption = page.querySelector('.popup__caption');
 
 //initial cards array
 const initialCards = [
