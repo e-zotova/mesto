@@ -5,7 +5,7 @@
 @import url(../blocks/button/button.css);
 
 /* imports for input*/
-@import url(../blocks/input//input.css);
+@import url(../blocks/input/input.css);
 @import url(../blocks/input/_type/input_type_error.css);
 
 /* imports for header*/

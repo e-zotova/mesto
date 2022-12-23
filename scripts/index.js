@@ -138,7 +138,6 @@ editButton.addEventListener('click', () => {
   openPopup(profilePopup);
   nameInput.value = fullName.textContent;
   jobInput.value = job.textContent;
-  toggleButtonState(inputs, validationObject.submitButtonSelector, validationObject);
 });
 
 //submit profile
