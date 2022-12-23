@@ -4,7 +4,7 @@ const addButton = page.querySelector('.profile__add-button');
 const popup = page.querySelector('.popup');
 const closeButtons = page.querySelectorAll('.popup__close-button');
 const places = page.querySelector('.places');
-const input = page.querySelector('.input');
+const inputs = page.querySelectorAll('.input');
 
 //profile variables
 const fullName = page.querySelector('.profile__name');
@@ -26,7 +26,7 @@ const cardImageInput = newCardFormElement.querySelector('.input_type_place-image
 const imagePopup = page.querySelector('.popup_image-view');
 const bigImage = page.querySelector('.popup__big-image');
 const caption = page.querySelector('.popup__caption');
-const inputError = page.querySelector('.popup__input-error');
+const inputErrors = page.querySelectorAll('.popup__input-error');
 
 //initial cards array
 const initialCards = [
@@ -76,8 +76,12 @@ function closePopup(popup) {
 closeButtons.forEach(button => {
   button.addEventListener('click', function(evt) {
     closePopup(evt.target.closest('.popup'));
-    input.classList.remove('input_type_error');
-    inputError.classList.remove('popup__input-error_active');
+    inputs.forEach(element => {
+      element.classList.remove('input_type_error');
+    })
+    inputErrors.forEach(element => {
+      element.classList.remove('popup__input-error_active');
+    });
   });
 });
 
