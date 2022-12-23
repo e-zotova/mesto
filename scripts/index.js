@@ -26,7 +26,18 @@ const cardImageInput = newCardFormElement.querySelector('.input_type_place-image
 const imagePopup = page.querySelector('.popup_image-view');
 const bigImage = page.querySelector('.popup__big-image');
 const caption = page.querySelector('.popup__caption');
+
 const inputErrors = page.querySelectorAll('.popup__input-error');
+
+
+const validationObject = {
+  formSelector: '.popup__form',
+  inputSelector: '.input',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_invalid',
+  inputErrorClass: 'input_type_error',
+  errorMessageClass: 'popup__input-error_active'
+};
 
 //initial cards array
 const initialCards = [
@@ -127,6 +138,7 @@ editButton.addEventListener('click', () => {
   openPopup(profilePopup);
   nameInput.value = fullName.textContent;
   jobInput.value = job.textContent;
+  toggleButtonState(inputs, validationObject.submitButtonSelector, validationObject);
 });
 
 //submit profile
@@ -155,3 +167,5 @@ function submitNewCardForm(evt) {
 }
 
 newCardFormElement.addEventListener('submit', submitNewCardForm);
+
+enableValidation(validationObject);

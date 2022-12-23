@@ -18,11 +18,11 @@
           <h2 class="popup__header">Редактировать профиль</h2>
           <form class="popup__form popup__profile-form" name="edit-profile" novalidate>
             <label class="popup__label">
-              <input id="fullname" type="text" class="input input_type_full-name" placeholder="Имя" required>
+              <input id="fullname" type="text" class="input input_type_full-name" placeholder="Имя" minlength="2" maxlength="40" required>
               <span class="fullname-error popup__input-error"></span>
             </label>
             <label class="popup__label">
-              <input id="job" type="text" class="input input_type_job" placeholder="О себе" required>
+              <input id="job" type="text" class="input input_type_job" placeholder="О себе" minlength="2" maxlength="200" required>
               <span class="job-error popup__input-error"></span>
             </label>
             <button type="submit" class="button popup__save-button">Сохранить</button>
@@ -35,8 +35,8 @@
           <h2 class="popup__header">Новое место</h2>
           <form class="popup__form popup__new-card-form" name="new-card" novalidate>
             <label class="popup__label">
-              <input id="place-name" type="text" class="input input_type_place-name" placeholder="Название" required>
-              <span class="place-name-error popup__input-error"></span>
+              <input id="placename" type="text" class="input input_type_place-name" placeholder="Название" minlength="2" maxlength="30" required>
+              <span class="placename-error popup__input-error"></span>
             </label>
             <label class="popup__label">
               <input id="url" type="url" class="input input_type_place-image" placeholder="Ссылка на картинку" required>
@@ -71,7 +71,7 @@
         <template id="card-template">
           <article class="places__card">
             <div class="button places__delete-button"> </div>
-            <img class="button places__image">
+            <img class="button places__image" src="" alt="">
             <div class="places__item">
               <h2 class="places__name"></h2>
               <button type="button" aria-label="Добавить в избранное" class="button places__like-button"></button>

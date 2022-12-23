@@ -1,5 +1,6 @@
 .popup__save-button {
-  background: no-repeat center/cover url(../../../images/save-button.svg);
+  border: 1px solid #fff;
+  background: #000;
   min-width: 358px;
   min-height: 50px;
   border-radius: 2px;
