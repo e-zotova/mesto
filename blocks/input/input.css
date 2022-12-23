@@ -1,14 +1,12 @@
 .input {
-  display: block;
+  box-sizing: border-box;
   font-size: 14px;
   line-height: 17px;
-  max-width: 358px;
-  min-height: 27px;
   width: 100%;
-  height: 100%;
-  border: white;
+  height: 100%px;
+  border: 0;
+  padding: 5px 0 13px;
   border-bottom: 1px solid rgba(0,0,0,.2);
-  margin: 0 36px 30px;
 }
 
 @media screen and (max-width: 630px) {

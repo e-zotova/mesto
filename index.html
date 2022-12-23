@@ -16,9 +16,15 @@
       <div class="popup popup_profile">
         <div class="popup__container">
           <h2 class="popup__header">Редактировать профиль</h2>
-          <form class="popup__profile-form" name="edit-profile">
-            <input type="text" class="input input_type_full-name">
-            <input type="text" class="input input_type_job">
+          <form class="popup__form popup__profile-form" name="edit-profile" novalidate>
+            <label class="popup__label">
+              <input id="full-name" type="text" class="input input_type_full-name" placeholder="Имя" required>
+              <span class="full-name-error popup__input-error"></span>
+            </label>
+            <label class="popup__label">
+              <input id="job" type="text" class="input input_type_job" placeholder="О себе" required>
+              <span class="job-error popup__input-error"></span>
+            </label>
             <button type="submit" class="button popup__save-button">Сохранить</button>
           </form>
           <button type="reset" aria-label="Закрыть" class="button popup__close-button"></button>
@@ -27,9 +33,15 @@
       <div class="popup popup_new-card">
         <div class="popup__container">
           <h2 class="popup__header">Новое место</h2>
-          <form class="popup__new-card-form" name="new-card">
-            <input type="text" class="input input_type_place-name" placeholder="Название">
-            <input type="text" class="input input_type_place-image" placeholder="Ссылка на картинку">
+          <form class="popup__form popup__new-card-form" name="new-card" novalidate>
+            <label class="popup__label">
+              <input id="place-name" type="text" class="input input_type_place-name" placeholder="Название" required>
+              <span class="place-name-error popup__input-error"></span>
+            </label>
+            <label class="popup__label">
+              <input id="url" type="url" class="input input_type_place-image" placeholder="Ссылка на картинку" required>
+              <span class="url-error popup__input-error"></span>
+            </label>
             <button type="submit" class="button popup__save-button">Создать</button>
           </form>
           <button type="reset" aria-label="Закрыть" class="button popup__close-button"></button>
@@ -72,6 +84,8 @@
       <p class="footer__copyright">&#169; 2022 Mesto Russia</p>
     </footer>
   </div>
+
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 </html>
