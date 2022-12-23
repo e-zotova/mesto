@@ -15,6 +15,7 @@ const profilePopup = page.querySelector('.popup_profile');
 const profileFormElement = page.querySelector('.popup__profile-form');
 const nameInput = profileFormElement.querySelector('.input_type_full-name');
 const jobInput = profileFormElement.querySelector('.input_type_job');
+const submitButton = page.querySelector('.popup__save-button');
 
 //new card popup variables
 const newCardPopup = page.querySelector('.popup_new-card');
@@ -138,6 +139,7 @@ editButton.addEventListener('click', () => {
   openPopup(profilePopup);
   nameInput.value = fullName.textContent;
   jobInput.value = job.textContent;
+  toggleButtonState([nameInput, jobInput], submitButton, validationObject);
 });
 
 //submit profile
@@ -154,6 +156,7 @@ profileFormElement.addEventListener('submit', submitProfileForm);
 //open new card
 addButton.addEventListener('click', () => {
   openPopup(newCardPopup);
+  toggleButtonState([cardNameInput, cardImageInput], submitButton, validationObject);
 });
 
 //submit new card
