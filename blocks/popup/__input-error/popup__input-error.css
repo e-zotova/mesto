@@ -6,8 +6,7 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 15px;
-
   margin-top: 5px;
   box-sizing: border-box;
-  height: 35px;
+  min-height: 30px;
 }
