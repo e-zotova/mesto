@@ -42,12 +42,14 @@ const setEventListeners = (formElement, config) => {
   const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
 
+  //check button state with each symbol in input field
   toggleButtonState(inputList, buttonElement, config);
-
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
       checkInputValidity(formElement, inputElement, config);
+
+      //check button state with first page load
       toggleButtonState(inputList, buttonElement, config);
     });
   });

@@ -15,7 +15,7 @@ const profilePopup = page.querySelector('.popup_profile');
 const profileFormElement = page.querySelector('.popup__profile-form');
 const nameInput = profileFormElement.querySelector('.input_type_full-name');
 const jobInput = profileFormElement.querySelector('.input_type_job');
-const submitButton = page.querySelector('.popup__save-button');
+const submitButtons = page.querySelectorAll('.popup__save-button');
 
 //new card popup variables
 const newCardPopup = page.querySelector('.popup_new-card');
@@ -74,12 +74,10 @@ const initialCards = [
   }
 ];
 
-//open popup
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
 
-//close popup
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
@@ -88,14 +86,32 @@ function closePopup(popup) {
 closeButtons.forEach(button => {
   button.addEventListener('click', function(evt) {
     closePopup(evt.target.closest('.popup'));
+
+    //remove red error line
     inputs.forEach(element => {
       element.classList.remove('input_type_error');
     })
+
+    //remove error text
     inputErrors.forEach(element => {
       element.classList.remove('popup__input-error_active');
     });
-  });
+
+    //check button state
+    submitButtons.forEach(button => {
+        toggleButtonState(inputs, button, validationObject);
+      })
+    });
 });
+
+//
+function closePopupEsc(evt) {
+  if (evt.key === 'Escape') {
+    closePopup(evt.target.closest('.popup'));
+  };
+
+  document.removeEventListener('keydown', closePopupEsc);
+}
 
 //create card
 const createCard = (name, link, alt = name) => {
@@ -139,7 +155,13 @@ editButton.addEventListener('click', () => {
   openPopup(profilePopup);
   nameInput.value = fullName.textContent;
   jobInput.value = job.textContent;
-  toggleButtonState([nameInput, jobInput], submitButton, validationObject);
+
+  //check button state when open form
+  submitButtons.forEach((button) => {
+    toggleButtonState([nameInput, jobInput], button, validationObject);
+  })
+
+  profilePopup.addEventListener('keydown', closePopupEsc);
 });
 
 //submit profile
@@ -156,7 +178,13 @@ profileFormElement.addEventListener('submit', submitProfileForm);
 //open new card
 addButton.addEventListener('click', () => {
   openPopup(newCardPopup);
-  toggleButtonState([cardNameInput, cardImageInput], submitButton, validationObject);
+
+  //check button state when open form
+  submitButtons.forEach((button) => {
+    toggleButtonState([cardNameInput, cardImageInput], button, validationObject);
+  })
+
+  newCardPopup.addEventListener('keydown', closePopupEsc);
 });
 
 //submit new card
