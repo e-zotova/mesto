@@ -8,10 +8,3 @@
   padding: 5px 0 13px;
   border-bottom: 1px solid rgba(0,0,0,.2);
 }
-
-@media screen and (max-width: 630px) {
-  .input {
-    max-width: 238px;
-    margin-left: 22px;
-  }
-}

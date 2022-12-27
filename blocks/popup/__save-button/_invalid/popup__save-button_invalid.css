@@ -15,3 +15,11 @@
   opacity: 1;
   cursor: text;
 }
+
+@media screen and (max-width: 630px) {
+  .popup__save-button_invalid {
+    margin: 10px 0 3px;
+    min-width: 238px;
+    min-height: 46px;
+  }
+}
