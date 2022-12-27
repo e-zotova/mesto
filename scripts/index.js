@@ -74,12 +74,29 @@ const initialCards = [
   }
 ];
 
+//
+function closePopupByEscape(evt) {
+  if (evt.key === 'Escape') {
+    closePopup(evt.target.closest('.popup'));
+  };
+}
+
+function closePopupByClick(evt) {
+  if (evt.target.classList.contains('popup')) {
+    closePopup(evt.target);
+  };
+}
+
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  popup.addEventListener('keydown', closePopupByEscape);
+  popup.addEventListener('mousedown', closePopupByClick);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  popup.removeEventListener('keydown', closePopupByEscape);
+  popup.removeEventListener('mousedown', closePopupByClick);
 }
 
 //close button listener
@@ -98,20 +115,11 @@ closeButtons.forEach(button => {
     });
 
     //check button state
-    submitButtons.forEach(button => {
+      submitButtons.forEach(button => {
         toggleButtonState(inputs, button, validationObject);
       })
     });
 });
-
-//
-function closePopupEsc(evt) {
-  if (evt.key === 'Escape') {
-    closePopup(evt.target.closest('.popup'));
-  };
-
-  document.removeEventListener('keydown', closePopupEsc);
-}
 
 //create card
 const createCard = (name, link, alt = name) => {
@@ -160,8 +168,6 @@ editButton.addEventListener('click', () => {
   submitButtons.forEach((button) => {
     toggleButtonState([nameInput, jobInput], button, validationObject);
   })
-
-  profilePopup.addEventListener('keydown', closePopupEsc);
 });
 
 //submit profile
@@ -183,8 +189,6 @@ addButton.addEventListener('click', () => {
   submitButtons.forEach((button) => {
     toggleButtonState([cardNameInput, cardImageInput], button, validationObject);
   })
-
-  newCardPopup.addEventListener('keydown', closePopupEsc);
 });
 
 //submit new card
