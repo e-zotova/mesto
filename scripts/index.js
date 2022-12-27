@@ -31,6 +31,15 @@ const caption = page.querySelector('.popup__caption');
 const inputErrors = page.querySelectorAll('.popup__input-error');
 
 
+const validationObject = {
+  formSelector: '.popup__form',
+  inputSelector: '.input',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_invalid',
+  inputErrorClass: 'input_type_error',
+  errorMessageClass: 'popup__input-error_active'
+};
+
 //initial cards array
 const initialCards = [
   {
@@ -107,7 +116,7 @@ closeButtons.forEach(button => {
 
     //check button state
       submitButtons.forEach(button => {
-        toggleButtonState(inputs, button, enableValidation);
+        toggleButtonState(inputs, button, validationObject);
       })
     });
 });
@@ -157,7 +166,7 @@ editButton.addEventListener('click', () => {
 
   //check button state when open form
   submitButtons.forEach((button) => {
-    toggleButtonState([nameInput, jobInput], button, enableValidation);
+    toggleButtonState([nameInput, jobInput], button, validationObject);
   })
 });
 
@@ -178,7 +187,7 @@ addButton.addEventListener('click', () => {
 
   //check button state when open form
   submitButtons.forEach((button) => {
-    toggleButtonState([cardNameInput, cardImageInput], button, enableValidation);
+    toggleButtonState([cardNameInput, cardImageInput], button, validationObject);
   })
 });
 
@@ -193,11 +202,4 @@ function submitNewCardForm(evt) {
 
 newCardFormElement.addEventListener('submit', submitNewCardForm);
 
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.input',
-  submitButtonSelector: '.popup__save-button',
-  inactiveButtonClass: 'popup__save-button_invalid',
-  inputErrorClass: 'input_type_error',
-  errorMessageClass: 'popup__input-error_active'
-});
+enableValidation(validationObject);
