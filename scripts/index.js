@@ -74,7 +74,7 @@ const initialCards = [
   }
 ];
 
-//
+
 function closePopupByEscape(evt) {
   if (evt.key === 'Escape') {
     closePopup(evt.target.closest('.popup'));
