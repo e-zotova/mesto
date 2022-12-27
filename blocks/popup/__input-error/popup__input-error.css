@@ -10,3 +10,9 @@
   box-sizing: border-box;
   min-height: 30px;
 }
+
+@media screen and (max-width: 630px) {
+  .popup__input-error {
+    max-width: 238px;
+  }
+}
