@@ -15,6 +15,8 @@ const profilePopup = page.querySelector('.popup_profile');
 const profileFormElement = page.querySelector('.popup__profile-form');
 const nameInput = profileFormElement.querySelector('.input_type_full-name');
 const jobInput = profileFormElement.querySelector('.input_type_job');
+const nameError = profileFormElement.querySelector('.fullname-error');
+const jobError = profileFormElement.querySelector('.job-error');
 const submitButtons = page.querySelectorAll('.popup__save-button');
 
 //new card popup variables
@@ -22,6 +24,7 @@ const newCardPopup = page.querySelector('.popup_new-card');
 const newCardFormElement = page.querySelector('.popup__new-card-form');
 const cardNameInput = newCardFormElement.querySelector('.input_type_place-name');
 const cardImageInput = newCardFormElement.querySelector('.input_type_place-image');
+const cardSubmitButton = newCardFormElement.querySelector('.popup__save-button');
 
 //image popup variables
 const imagePopup = page.querySelector('.popup_image-view');
@@ -108,23 +111,6 @@ closeButtons.forEach(button => {
     });
 });
 
-/*
-//remove red error line
-inputs.forEach(element => {
-  element.classList.remove('input_type_error');
-})
-
-//remove error text
-inputErrors.forEach(element => {
-  element.classList.remove('popup__input-error_active');
-});
-
-//check button state
-  submitButtons.forEach(button => {
-    toggleButtonState(inputs, button, validationObject);
-  })
-  */
-
 //create card
 const createCard = (name, link, alt = name) => {
   const cardTemplate = page.querySelector('#card-template').content;
@@ -168,10 +154,13 @@ editButton.addEventListener('click', () => {
   nameInput.value = fullName.textContent;
   jobInput.value = job.textContent;
 
-  //check button state when open form
-  submitButtons.forEach((button) => {
-    toggleButtonState([nameInput, jobInput], button, validationObject);
-  })
+  //remove red error line
+  nameInput.classList.remove('input_type_error');
+  jobInput.classList.remove('input_type_error');
+
+  //remove error text
+  nameError.classList.remove('popup__input-error_active');
+  jobError.classList.remove('popup__input-error_active');
 });
 
 //submit profile
@@ -188,11 +177,6 @@ profileFormElement.addEventListener('submit', submitProfileForm);
 //open new card
 addButton.addEventListener('click', () => {
   openPopup(newCardPopup);
-
-  //check button state when open form
-  submitButtons.forEach((button) => {
-    toggleButtonState([cardNameInput, cardImageInput], button, validationObject);
-  })
 });
 
 //submit new card

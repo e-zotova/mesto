@@ -42,14 +42,21 @@ const setEventListeners = (formElement, config) => {
   const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
 
-  //check button state with each symbol in input field
+  //check button state with first page load
   toggleButtonState(inputList, buttonElement, config);
+
+  //deactivate button after reset method was called
+  formElement.addEventListener('reset', () => {
+    setTimeout(() => {
+     toggleButtonState(inputList, buttonElement, config);
+    }, 0);
+  });
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
       checkInputValidity(formElement, inputElement, config);
 
-      //check button state with first page load
+      //check button state with each symbol in input field
       toggleButtonState(inputList, buttonElement, config);
     });
   });
