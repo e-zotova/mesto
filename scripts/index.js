@@ -170,6 +170,7 @@ function submitProfileForm (evt) {
   fullName.textContent = nameInput.value;
   job.textContent = jobInput.value;
   closePopup(profilePopup);
+  evt.target.reset();
 }
 
 profileFormElement.addEventListener('submit', submitProfileForm);
