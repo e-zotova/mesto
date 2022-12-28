@@ -76,8 +76,10 @@ const initialCards = [
 
 
 function closePopupByEscape(evt) {
+  const openedPopup = page.querySelector('.popup_opened');
+
   if (evt.key === 'Escape') {
-    closePopup(evt.target.closest('.popup'));
+    closePopup(openedPopup);
   };
 }
 
@@ -89,13 +91,13 @@ function closePopupByClick(evt) {
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  popup.addEventListener('keydown', closePopupByEscape);
+  document.addEventListener('keydown', closePopupByEscape);
   popup.addEventListener('mousedown', closePopupByClick);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  popup.removeEventListener('keydown', closePopupByEscape);
+  document.removeEventListener('keydown', closePopupByEscape);
   popup.removeEventListener('mousedown', closePopupByClick);
 }
 
@@ -103,23 +105,25 @@ function closePopup(popup) {
 closeButtons.forEach(button => {
   button.addEventListener('click', function(evt) {
     closePopup(evt.target.closest('.popup'));
-
-    //remove red error line
-    inputs.forEach(element => {
-      element.classList.remove('input_type_error');
-    })
-
-    //remove error text
-    inputErrors.forEach(element => {
-      element.classList.remove('popup__input-error_active');
-    });
-
-    //check button state
-      submitButtons.forEach(button => {
-        toggleButtonState(inputs, button, validationObject);
-      })
     });
 });
+
+/*
+//remove red error line
+inputs.forEach(element => {
+  element.classList.remove('input_type_error');
+})
+
+//remove error text
+inputErrors.forEach(element => {
+  element.classList.remove('popup__input-error_active');
+});
+
+//check button state
+  submitButtons.forEach(button => {
+    toggleButtonState(inputs, button, validationObject);
+  })
+  */
 
 //create card
 const createCard = (name, link, alt = name) => {
