@@ -17,17 +17,6 @@ import {openPopup} from './index.js';
     return cardElement;
   }
 
-  generateCard() {
-    this._element = this._getTemplate();
-    this._setEventListeners();
-
-    this._element.querySelector('.places__name').textContent = this._name;
-    this._element.querySelector('.places__image').src = this._link;
-    this._element.querySelector('.places__image').alt = this._name;
-
-    return this._element;
-  }
-
   _handleImageClick() {
     const imagePopup = document.querySelector('.popup_image-view');
     const bigImage = document.querySelector('.popup__big-image');
@@ -40,8 +29,33 @@ import {openPopup} from './index.js';
   }
 
   _setEventListeners() {
-    this._element.querySelector('.places__image').addEventListener('click', () => {
+    const cardImage = this._element.querySelector('.places__image');
+    const likeButton = this._element.querySelector('.places__like-button');
+    const deleteButton = this._element.querySelector('.places__delete-button');
+
+    cardImage.addEventListener('click', () => {
       this._handleImageClick();
     });
+
+    likeButton.addEventListener('click', function (evt) {
+      evt.target.classList.toggle('places__like-button_active');
+    });
+
+    deleteButton.addEventListener('click', function (evt) {
+      evt.target.closest('.places__card').remove();
+    });
+  }
+
+  generateCard() {
+    this._element = this._getTemplate();
+    const cardName = this._element.querySelector('.places__name');
+    const cardImage = this._element.querySelector('.places__image');
+    this._setEventListeners();
+
+    cardName.textContent = this._name;
+    cardImage.src = this._link;
+    cardImage.alt = this._name;
+
+    return this._element;
   }
 }
