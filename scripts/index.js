@@ -5,10 +5,8 @@ export {openPopup};
 const page = document.querySelector('.page');
 const editButton = page.querySelector('.profile__edit-button');
 const addButton = page.querySelector('.profile__add-button');
-const popup = page.querySelector('.popup');
 const closeButtons = page.querySelectorAll('.popup__close-button');
 const places = page.querySelector('.places');
-const inputs = page.querySelectorAll('.input');
 
 //profile variables
 const fullName = page.querySelector('.profile__name');
@@ -21,22 +19,10 @@ const nameInput = profileFormElement.querySelector('.input_type_full-name');
 const jobInput = profileFormElement.querySelector('.input_type_job');
 const nameError = profileFormElement.querySelector('.fullname-error');
 const jobError = profileFormElement.querySelector('.job-error');
-const submitButtons = page.querySelectorAll('.popup__save-button');
 
 //new card popup variables
 const newCardPopup = page.querySelector('.popup_new-card');
 const newCardFormElement = page.querySelector('.popup__new-card-form');
-const cardNameInput = newCardFormElement.querySelector('.input_type_place-name');
-const cardImageInput = newCardFormElement.querySelector('.input_type_place-image');
-const cardSubmitButton = newCardFormElement.querySelector('.popup__save-button');
-
-//image popup variables
-// const imagePopup = page.querySelector('.popup_image-view');
-// const bigImage = page.querySelector('.popup__big-image');
-// const caption = page.querySelector('.popup__caption');
-
-const inputErrors = page.querySelectorAll('.popup__input-error');
-
 
 const validationObject = {
   formSelector: '.popup__form',
@@ -114,49 +100,12 @@ closeButtons.forEach(button => {
     });
 });
 
-//create card
-// const createCard = (name, link, alt = name) => {
-//   const cardTemplate = page.querySelector('#card-template').content;
-//   const cardElement = cardTemplate.cloneNode(true);
-//   const cardImage = cardElement.querySelector('.places__image');
-//   const cardName = cardElement.querySelector('.places__name');
-//   const likeButton = cardElement.querySelector('.places__like-button');
-//   const deleteButton = cardElement.querySelector('.places__delete-button');
-
-//   cardName.textContent = name;
-//   cardImage.src = link;
-//   cardImage.alt = alt;
-
-//   likeButton.addEventListener('click', function (evt) {
-//     evt.target.classList.toggle('places__like-button_active');
-//   });
-
-//   deleteButton.addEventListener('click', function (evt) {
-//     evt.target.closest('.places__card').remove();
-//   });
-
-//   cardImage.addEventListener('click', function () {
-//     openPopup(imagePopup);
-//     bigImage.src = link;
-//     bigImage.alt = name;
-//     caption.textContent = name;
-//   });
-
-//   return cardElement;
-// };
-
 initialCards.forEach((element) => {
   const card = new Card(element, '#card-template');
   const cardElement = card.generateCard();
 
   places.append(cardElement);
 });
-
-//add cards on page load
-// initialCards.forEach(function(element) {
-//   places.append(
-//     createCard(element.name, element.link, element.alt));
-// });
 
 //open profile
 editButton.addEventListener('click', () => {
