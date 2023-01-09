@@ -1,3 +1,6 @@
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+
 const page = document.querySelector('.page');
 const editButton = page.querySelector('.profile__edit-button');
 const addButton = page.querySelector('.profile__add-button');
