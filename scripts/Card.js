@@ -1,6 +1,5 @@
 import {openPopup} from './index.js';
 
-
  export default class Card {
   constructor(data, templateSelector) {
     this._name = data.name;
@@ -33,7 +32,7 @@ import {openPopup} from './index.js';
     const imagePopup = document.querySelector('.popup_image-view');
     const bigImage = document.querySelector('.popup__big-image');
     const caption = document.querySelector('.popup__caption');
-    
+
     openPopup(imagePopup);
     bigImage.src = this._link;
     bigImage.alt = this._name;
