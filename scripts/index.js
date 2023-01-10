@@ -162,8 +162,8 @@ newCardFormElement.addEventListener('submit', submitNewCardForm);
 
 //validation for Profile form
 const profileFormValidator = new FormValidator(validationObject, profileFormElement);
-profileFormValidator.enableValidation(profileFormElement);
+profileFormValidator.enableValidation();
 
 //validation for new card form
 const newCardFormValidator = new FormValidator(validationObject, newCardFormElement);
-newCardFormValidator.enableValidation(newCardFormElement);
+newCardFormValidator.enableValidation();

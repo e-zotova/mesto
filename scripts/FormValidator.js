@@ -68,8 +68,7 @@ export default class FormValidator {
     });
   };
 
-
-  enableValidation(formElement) {
-    this._setEventListeners(formElement);
+  enableValidation() {
+    this._setEventListeners(this._formElement);
   }
 }
