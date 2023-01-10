@@ -100,6 +100,7 @@ closeButtons.forEach(button => {
     });
 });
 
+//create cards from array
 initialCards.forEach((element) => {
   const card = new Card(element, '#card-template');
   const cardElement = card.generateCard();
@@ -159,4 +160,10 @@ function submitNewCardForm(evt) {
 
 newCardFormElement.addEventListener('submit', submitNewCardForm);
 
-enableValidation(validationObject);
+//validation for Profile form
+const profileFormValidator = new FormValidator(validationObject, profileFormElement);
+profileFormValidator.enableValidation(profileFormElement);
+
+//validation for new card form
+const newCardFormValidator = new FormValidator(validationObject, newCardFormElement);
+newCardFormValidator.enableValidation(newCardFormElement);
