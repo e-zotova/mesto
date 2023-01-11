@@ -167,3 +167,4 @@ profileFormValidator.enableValidation();
 //validation for new card form
 const newCardFormValidator = new FormValidator(validationObject, newCardFormElement);
 newCardFormValidator.enableValidation();
+
