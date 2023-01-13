@@ -24,6 +24,9 @@ const jobError = profileFormElement.querySelector('.job-error');
 const newCardPopup = page.querySelector('.popup_new-card');
 const newCardFormElement = page.querySelector('.popup__new-card-form');
 
+const placeName = page.querySelector('#placename');
+const placeUrl = page.querySelector('#url');
+
 const validationObject = {
   formSelector: '.popup__form',
   inputSelector: '.input',
@@ -114,13 +117,14 @@ editButton.addEventListener('click', () => {
   nameInput.value = fullName.textContent;
   jobInput.value = job.textContent;
 
-  //remove red error line
-  nameInput.classList.remove('input_type_error');
-  jobInput.classList.remove('input_type_error');
+  profileFormValidator.resetValidation();
+
+  //nameInput.classList.remove('input_type_error');
+  //jobInput.classList.remove('input_type_error');
 
   //remove error text
-  nameError.classList.remove('popup__input-error_active');
-  jobError.classList.remove('popup__input-error_active');
+  //nameError.classList.remove('popup__input-error_active');
+  //jobError.classList.remove('popup__input-error_active');
 });
 
 //submit profile
@@ -145,9 +149,9 @@ function submitNewCardForm(evt) {
   evt.preventDefault();
 
   const cardObject = {
-    name: document.querySelector('#placename').value,
-    link: document.querySelector('#url').value,
-    alt: document.querySelector('#placename').value
+    name: placeName.value,
+    link: placeUrl.value,
+    alt: placeName.value
   };
 
   const card = new Card(cardObject, '#card-template');
