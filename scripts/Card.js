@@ -33,9 +33,7 @@ import {openPopup} from './index.js';
     const likeButton = this._element.querySelector('.places__like-button');
     const deleteButton = this._element.querySelector('.places__delete-button');
 
-    cardImage.addEventListener('click', () => {
-      this._handleImageClick();
-    });
+    cardImage.addEventListener('click', this._handleImageClick);
 
     likeButton.addEventListener('click', function (evt) {
       evt.target.classList.toggle('places__like-button_active');

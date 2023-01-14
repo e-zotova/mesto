@@ -28,7 +28,7 @@ function closePopup(popup) {
   document.removeEventListener('keydown', closePopupByEscape);
 }
 
-popupOverlays.forEach((overlay) => { 
+popupOverlays.forEach((overlay) => {
   overlay.addEventListener('mousedown', closePopupByClick);
 })
 
@@ -36,7 +36,7 @@ popupOverlays.forEach((overlay) => {
 closeButtons.forEach(button => {
   button.addEventListener('click', function(evt) {
     closePopup(evt.target.closest('.popup'));
-    });
+  });
 });
 
 //create cards from array
@@ -47,14 +47,16 @@ initialCards.forEach((element) => {
   places.append(cardElement);
 });
 
-//open profile
-editButton.addEventListener('click', () => {
+//open profile popup
+function openProfile() {
   openPopup(profilePopup);
   nameInput.value = fullName.textContent;
   jobInput.value = job.textContent;
 
   profileFormValidator.resetValidation();
-});
+}
+
+editButton.addEventListener('click', openProfile);
 
 //submit profile
 function submitProfileForm (evt) {
@@ -68,10 +70,8 @@ function submitProfileForm (evt) {
 
 profileFormElement.addEventListener('submit', submitProfileForm);
 
-//open new card
-addButton.addEventListener('click', () => {
-  openPopup(newCardPopup);
-});
+//open new card popup
+addButton.addEventListener('click', openPopup(newCardPopup));
 
 //submit new card
 function submitNewCardForm(evt) {
