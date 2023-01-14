@@ -1,79 +1,13 @@
+import {closeButtons, places, editButton, addButton, profilePopup, popupOverlays, nameInput, fullName, jobInput, job,
+        newCardPopup, placeName, placeUrl, profileFormElement, newCardFormElement,
+        validationObject, initialCards} from './data.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 export {openPopup};
 
-const page = document.querySelector('.page');
-const editButton = page.querySelector('.profile__edit-button');
-const addButton = page.querySelector('.profile__add-button');
-const closeButtons = page.querySelectorAll('.popup__close-button');
-const places = page.querySelector('.places');
-
-//profile variables
-const fullName = page.querySelector('.profile__name');
-const job = page.querySelector('.profile__job');
-
-//profile popup variables
-const profilePopup = page.querySelector('.popup_profile');
-const profileFormElement = page.querySelector('.popup__profile-form');
-const nameInput = profileFormElement.querySelector('.input_type_full-name');
-const jobInput = profileFormElement.querySelector('.input_type_job');
-const nameError = profileFormElement.querySelector('.fullname-error');
-const jobError = profileFormElement.querySelector('.job-error');
-
-//new card popup variables
-const newCardPopup = page.querySelector('.popup_new-card');
-const newCardFormElement = page.querySelector('.popup__new-card-form');
-
-const placeName = page.querySelector('#placename');
-const placeUrl = page.querySelector('#url');
-
-const validationObject = {
-  formSelector: '.popup__form',
-  inputSelector: '.input',
-  submitButtonSelector: '.popup__save-button',
-  inactiveButtonClass: 'popup__save-button_invalid',
-  inputErrorClass: 'input_type_error',
-  errorMessageClass: 'popup__input-error_active'
-};
-
-//initial cards array
-const initialCards = [
-  {
-    name: 'Гора Эльбрус',
-    link: './images/grid-elbrus.jpg',
-    alt: 'Вид на гору Эльбрус.'
-  },
-  {
-    name: 'Домбай',
-    link: './images/grid-dombai.jpg',
-    alt: 'Заснеженные вершины Домбая.'
-  },
-  {
-    name: 'Куршская коса',
-    link: './images/grid-kosa.jpg',
-    alt: 'Берег Куршской косы.'
-  },
-  {
-    name: 'Алтай',
-    link: './images/grid-altai.jpg',
-    alt: 'Ноутбук на фоне лесов Алтая.'
-  },
-  {
-    name: 'Байкал',
-    link: './images/grid-baikal.jpg',
-    alt: 'Лед на озере Байкал.'
-  },
-  {
-    name: 'Карачаево-Черкессия',
-    link: './images/grid-karachaevsk.jpg',
-    alt: 'Сентинский храм в Карачаево-Черкессии.'
-  }
-];
-
-
 function closePopupByEscape(evt) {
   if (evt.key === 'Escape') {
-    const openedPopup = page.querySelector('.popup_opened');
+    const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
   };
 }
@@ -87,14 +21,16 @@ function closePopupByClick(evt) {
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupByEscape);
-  popup.addEventListener('mousedown', closePopupByClick);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupByEscape);
-  popup.removeEventListener('mousedown', closePopupByClick);
 }
+
+popupOverlays.forEach((overlay) => { 
+  overlay.addEventListener('mousedown', closePopupByClick);
+})
 
 //close button listener
 closeButtons.forEach(button => {
@@ -118,13 +54,6 @@ editButton.addEventListener('click', () => {
   jobInput.value = job.textContent;
 
   profileFormValidator.resetValidation();
-
-  //nameInput.classList.remove('input_type_error');
-  //jobInput.classList.remove('input_type_error');
-
-  //remove error text
-  //nameError.classList.remove('popup__input-error_active');
-  //jobError.classList.remove('popup__input-error_active');
 });
 
 //submit profile
