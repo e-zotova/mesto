@@ -3,7 +3,6 @@ import {closeButtons, places, editButton, addButton, profilePopup, popupOverlays
         validationObject, initialCards} from './data.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
-export {openPopup};
 
 function closePopupByEscape(evt) {
   if (evt.key === 'Escape') {
@@ -103,3 +102,4 @@ profileFormValidator.enableValidation();
 const newCardFormValidator = new FormValidator(validationObject, newCardFormElement);
 newCardFormValidator.enableValidation();
 
+export {openPopup};
