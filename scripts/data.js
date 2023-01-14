@@ -1,5 +1,5 @@
 const page = document.querySelector('.page');
-const popupOverlays = document.querySelectorAll('.popup');
+const popupOverlays = page.querySelectorAll('.popup');
 const editButton = page.querySelector('.profile__edit-button');
 const addButton = page.querySelector('.profile__add-button');
 const closeButtons = page.querySelectorAll('.popup__close-button');

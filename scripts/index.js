@@ -71,7 +71,9 @@ function submitProfileForm (evt) {
 profileFormElement.addEventListener('submit', submitProfileForm);
 
 //open new card popup
-addButton.addEventListener('click', openPopup(newCardPopup));
+addButton.addEventListener('click', () => {
+  openPopup(newCardPopup);
+});
 
 //submit new card
 function submitNewCardForm(evt) {
