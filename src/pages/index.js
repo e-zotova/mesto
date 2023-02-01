@@ -1,8 +1,8 @@
 import {closeButtons, places, editButton, addButton, profilePopup, popupOverlays, nameInput, fullName, jobInput, job,
         newCardPopup, placeName, placeUrl, profileFormElement, newCardFormElement,
         validationObject, initialCards} from '../scripts/data.js';
-import Card from '../scripts/Card.js';
-import FormValidator from '../scripts/FormValidator.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
 
 function closePopupByEscape(evt) {
   if (evt.key === 'Escape') {

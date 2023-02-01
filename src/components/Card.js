@@ -1,4 +1,4 @@
-import {openPopup} from '../src/index.js';
+import {openPopup} from '../pages/index.js';
 
  export default class Card {
   constructor(data, templateSelector) {
