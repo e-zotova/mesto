@@ -2,6 +2,7 @@ import {closeButtons, places, editButton, addButton, profilePopup, popupOverlays
         newCardPopup, placeName, placeUrl, profileFormElement, newCardFormElement,
         validationObject, initialCards} from '../utils/constants.js';
 import Card from '../components/Card.js';
+import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
 
 function closePopupByEscape(evt) {
@@ -39,12 +40,17 @@ closeButtons.forEach(button => {
 });
 
 //create cards from array
-initialCards.forEach((element) => {
-  const card = new Card(element, '#card-template');
-  const cardElement = card.generateCard();
+const cardList = new Section({
+  items: initialCards,
+  renderer: (element) => {
+      const card = new Card(element, '#card-template');
+      const cardElement = card.generateCard();
 
-  places.append(cardElement);
-});
+      cardList.addItem(cardElement);
+  }
+}, places);
+
+cardList.renderItems();
 
 //open profile popup
 function openProfile() {
@@ -78,16 +84,23 @@ addButton.addEventListener('click', () => {
 function submitNewCardForm(evt) {
   evt.preventDefault();
 
-  const cardObject = {
+  const cardObjectArray = [{
     name: placeName.value,
     link: placeUrl.value,
     alt: placeName.value
-  };
+  }];
 
-  const card = new Card(cardObject, '#card-template');
-  const cardElement = card.generateCard();
+  const newCard = new Section({
+    items: cardObjectArray,
+    renderer: (element) => {
+      const card = new Card(element, '#card-template');
+      const cardElement = card.generateCard();
 
-  places.prepend(cardElement);
+      newCard.addItem(cardElement);
+    }
+  }, places);
+  newCard.renderItems();
+
   closePopup(newCardPopup);
   evt.target.reset();
 }
