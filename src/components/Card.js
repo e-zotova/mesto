@@ -1,4 +1,4 @@
-import {openPopup} from '../pages/index.js';
+import Popup from "./Popup.js";
 
  export default class Card {
   constructor(data, templateSelector) {
@@ -22,7 +22,8 @@ import {openPopup} from '../pages/index.js';
     const bigImage = document.querySelector('.popup__big-image');
     const caption = document.querySelector('.popup__caption');
 
-    openPopup(imagePopup);
+    const popup = new Popup(imagePopup);
+    popup.close();
     bigImage.src = this._link;
     bigImage.alt = this._name;
     caption.textContent = this._name;

@@ -4,40 +4,28 @@ import {closeButtons, places, editButton, addButton, profilePopup, popupOverlays
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
+import Popup from '../components/Popup.js';
 
-function closePopupByEscape(evt) {
-  if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened');
-    closePopup(openedPopup);
-  };
-}
+// function closePopupByEscape(evt) {
+//   if (evt.key === 'Escape') {
+//     const openedPopup = document.querySelector('.popup_opened');
+//     closePopup(openedPopup);
+//   };
+// }
 
-function closePopupByClick(evt) {
-  if (evt.target.classList.contains('popup')) {
-    closePopup(evt.target);
-  };
-}
-
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closePopupByEscape);
-}
-
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closePopupByEscape);
-}
+// function closePopupByClick(evt) {
+//   if (evt.target.classList.contains('popup')) {
+//     closePopup(evt.target);
+//   };
+// }
 
 popupOverlays.forEach((overlay) => {
-  overlay.addEventListener('mousedown', closePopupByClick);
+  const popup = new Popup(overlay);
+  overlay.addEventListener('mousedown', popup.setEventListeners.bind(popup));
 })
 
 //close button listener
-closeButtons.forEach(button => {
-  button.addEventListener('click', function(evt) {
-    closePopup(evt.target.closest('.popup'));
-  });
-});
+
 
 //create cards from array
 const cardList = new Section({
@@ -54,7 +42,8 @@ cardList.renderItems();
 
 //open profile popup
 function openProfile() {
-  openPopup(profilePopup);
+  const profile = new Popup(profilePopup);
+  profile.open();
   nameInput.value = fullName.textContent;
   jobInput.value = job.textContent;
 
@@ -69,7 +58,8 @@ function submitProfileForm (evt) {
 
   fullName.textContent = nameInput.value;
   job.textContent = jobInput.value;
-  closePopup(profilePopup);
+  const profile = new Popup(profilePopup);
+  profile.close();
   evt.target.reset();
 }
 
@@ -77,7 +67,8 @@ profileFormElement.addEventListener('submit', submitProfileForm);
 
 //open new card popup
 addButton.addEventListener('click', () => {
-  openPopup(newCardPopup);
+  const cardPopup = new Popup(newCardPopup);
+  cardPopup.open();
 });
 
 //submit new card
@@ -114,5 +105,3 @@ profileFormValidator.enableValidation();
 //validation for new card form
 const newCardFormValidator = new FormValidator(validationObject, newCardFormElement);
 newCardFormValidator.enableValidation();
-
-export {openPopup};
