@@ -6,26 +6,10 @@ import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
 import Popup from '../components/Popup.js';
 
-// function closePopupByEscape(evt) {
-//   if (evt.key === 'Escape') {
-//     const openedPopup = document.querySelector('.popup_opened');
-//     closePopup(openedPopup);
-//   };
-// }
-
-// function closePopupByClick(evt) {
-//   if (evt.target.classList.contains('popup')) {
-//     closePopup(evt.target);
-//   };
-// }
-
 popupOverlays.forEach((overlay) => {
   const popup = new Popup(overlay);
   overlay.addEventListener('mousedown', popup.setEventListeners.bind(popup));
 })
-
-//close button listener
-
 
 //create cards from array
 const cardList = new Section({
