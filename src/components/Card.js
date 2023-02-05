@@ -1,4 +1,6 @@
 import Popup from "./Popup.js";
+import PopupWithImage from "./PopupWithImage.js";
+import { imagePopup } from "../utils/constants.js";
 
  export default class Card {
   constructor(data, templateSelector) {
@@ -18,15 +20,8 @@ import Popup from "./Popup.js";
   }
 
   _handleImageClick() {
-    const imagePopup = document.querySelector('.popup_image-view');
-    const bigImage = document.querySelector('.popup__big-image');
-    const caption = document.querySelector('.popup__caption');
-
-    const popup = new Popup(imagePopup);
-    popup.close();
-    bigImage.src = this._link;
-    bigImage.alt = this._name;
-    caption.textContent = this._name;
+    const popup = new PopupWithImage(imagePopup, this._name, this._link);
+    popup.open();
   }
 
   _setEventListeners() {

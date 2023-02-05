@@ -1,4 +1,4 @@
-import {closeButtons, places, editButton, addButton, profilePopup, popupOverlays, nameInput, fullName, jobInput, job,
+import {places, editButton, addButton, profilePopup, popupOverlays, nameInput, fullName, jobInput, job,
         newCardPopup, placeName, placeUrl, profileFormElement, newCardFormElement,
         validationObject, initialCards} from '../utils/constants.js';
 import Card from '../components/Card.js';

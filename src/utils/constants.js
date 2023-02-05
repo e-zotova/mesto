@@ -15,6 +15,10 @@ const profileFormElement = page.querySelector('.popup__profile-form');
 const nameInput = profileFormElement.querySelector('.input_type_full-name');
 const jobInput = profileFormElement.querySelector('.input_type_job');
 
+const imagePopup = document.querySelector('.popup_image-view');
+const bigImage = document.querySelector('.popup__big-image');
+const caption = document.querySelector('.popup__caption');
+
 //new card popup variables
 const newCardPopup = page.querySelector('.popup_new-card');
 const newCardFormElement = page.querySelector('.popup__new-card-form');
@@ -66,5 +70,5 @@ const initialCards = [
 ];
 
 export {places, editButton, addButton, closeButtons, popupOverlays, profilePopup, nameInput, fullName, jobInput, job,
-        newCardPopup, placeName, placeUrl, profileFormElement, newCardFormElement,
+  imagePopup, bigImage, caption, newCardPopup, placeName, placeUrl, profileFormElement, newCardFormElement,
         validationObject, initialCards};
