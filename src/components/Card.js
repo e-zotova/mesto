@@ -1,4 +1,3 @@
-import Popup from "./Popup.js";
 import PopupWithImage from "./PopupWithImage.js";
 import { imagePopup } from "../utils/constants.js";
 
@@ -20,8 +19,8 @@ import { imagePopup } from "../utils/constants.js";
   }
 
   _handleImageClick() {
-    const popup = new PopupWithImage(imagePopup, this._name, this._link);
-    popup.open();
+    const popup = new PopupWithImage(imagePopup);
+    popup.open(this._name, this._link);
   }
 
   _setEventListeners() {

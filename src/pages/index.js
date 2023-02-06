@@ -5,6 +5,7 @@ import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
 import Popup from '../components/Popup.js';
+import PopupWithForm from '../components/PopupWithForm.js';
 
 popupOverlays.forEach((overlay) => {
   const popup = new Popup(overlay);
@@ -15,7 +16,7 @@ popupOverlays.forEach((overlay) => {
 const cardList = new Section({
   items: initialCards,
   renderer: (element) => {
-      const card = new Card(element, '#card-template');
+      const card = new Card(element,'#card-template');
       const cardElement = card.generateCard();
 
       cardList.addItem(cardElement);
@@ -26,11 +27,16 @@ cardList.renderItems();
 
 //open profile popup
 function openProfile() {
-  const profile = new Popup(profilePopup);
+  const profile = new PopupWithForm({
+    popup: profilePopup,
+    handleFormSubmit: (formData) => {
+
+    }
+  });
   profile.open();
   nameInput.value = fullName.textContent;
   jobInput.value = job.textContent;
-
+  
   profileFormValidator.resetValidation();
 }
 
@@ -42,16 +48,25 @@ function submitProfileForm (evt) {
 
   fullName.textContent = nameInput.value;
   job.textContent = jobInput.value;
-  const profile = new Popup(profilePopup);
+  const profile = new PopupWithForm({
+    popup: profilePopup,
+    handleFormSubmit: (formData) => {
+
+    }
+  });
   profile.close();
-  evt.target.reset();
 }
 
 profileFormElement.addEventListener('submit', submitProfileForm);
 
 //open new card popup
 addButton.addEventListener('click', () => {
-  const cardPopup = new Popup(newCardPopup);
+  const cardPopup = new PopupWithForm({
+    popup: newCardPopup,
+    handleFormSubmit: (formData) => {
+
+    }
+  });
   cardPopup.open();
 });
 
@@ -76,8 +91,13 @@ function submitNewCardForm(evt) {
   }, places);
   newCard.renderItems();
 
-  closePopup(newCardPopup);
-  evt.target.reset();
+  const cardPopup = new PopupWithForm({
+    popup: newCardPopup,
+    handleFormSubmit: (formData) => {
+
+    }
+  });
+  cardPopup.close();
 }
 
 newCardFormElement.addEventListener('submit', submitNewCardForm);

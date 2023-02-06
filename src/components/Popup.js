@@ -1,3 +1,4 @@
+//this class is for opening and closing popups
 import { closeButtons } from "../utils/constants.js";
 export default class Popup {
   constructor(popup) {
