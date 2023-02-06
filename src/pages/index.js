@@ -1,12 +1,14 @@
 import {places, editButton, addButton, profilePopup, popupOverlays, nameInput, fullName, jobInput, job,
-        newCardPopup, placeName, placeUrl, profileFormElement, newCardFormElement,
+        newCardPopup, imagePopup, placeName, placeUrl, profileFormElement, newCardFormElement,
         validationObject, initialCards} from '../utils/constants.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
 import Popup from '../components/Popup.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 
+//add listeners to all popups
 popupOverlays.forEach((overlay) => {
   const popup = new Popup(overlay);
   overlay.addEventListener('mousedown', popup.setEventListeners.bind(popup));
@@ -16,7 +18,7 @@ popupOverlays.forEach((overlay) => {
 const cardList = new Section({
   items: initialCards,
   renderer: (element) => {
-      const card = new Card(element,'#card-template');
+      const card = new Card(element,'#card-template', handleCardClick);
       const cardElement = card.generateCard();
 
       cardList.addItem(cardElement);
@@ -24,6 +26,12 @@ const cardList = new Section({
 }, places);
 
 cardList.renderItems();
+
+// open image by click function
+function handleCardClick() {
+  const popup = new PopupWithImage(imagePopup);
+  popup.open(this._name, this._link);
+}
 
 //open profile popup
 function openProfile() {
@@ -36,7 +44,7 @@ function openProfile() {
   profile.open();
   nameInput.value = fullName.textContent;
   jobInput.value = job.textContent;
-  
+
   profileFormValidator.resetValidation();
 }
 
@@ -83,7 +91,7 @@ function submitNewCardForm(evt) {
   const newCard = new Section({
     items: cardObjectArray,
     renderer: (element) => {
-      const card = new Card(element, '#card-template');
+      const card = new Card(element, '#card-template', handleCardClick);
       const cardElement = card.generateCard();
 
       newCard.addItem(cardElement);

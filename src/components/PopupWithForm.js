@@ -3,6 +3,7 @@ export default class PopupWithForm extends Popup {
 
   constructor({ popup, handleFormSubmit }) {
     super(popup);
+    this._form = popup.querySelector('.popup__form');
     this._handleFormSubmit = handleFormSubmit;
   }
 
@@ -26,6 +27,6 @@ export default class PopupWithForm extends Popup {
 
   close() {
     super.close();
-    //evt.target.reset();
+    this._form.reset();
   }
 }
