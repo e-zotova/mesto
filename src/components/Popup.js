@@ -23,17 +23,22 @@ export default class Popup {
   }
 
   setEventListeners(evt) {
-    closeButtons.forEach(button => {
-      button.addEventListener('click', function(evt) {
-        const popup = new Popup(evt.target.closest('.popup'));
-        popup.close();
-      });
-    });
+    this._popup.addEventListener('click', function(evt) {
+      if (evt.target.classList.contains('popup')) {
+        this.close();
+      }
+    })
+    // closeButtons.forEach(button => {
+    //   button.addEventListener('click', function(evt) {
+    //     const popup = new Popup(evt.target.closest('.popup'));
+    //     popup.close();
+    //   });
+    // });
 
 
-    if (evt.target.classList.contains('popup')) {
-      const popup = new Popup(evt.target.closest('.popup'));
-      popup.close();
-    };
+    // if (evt.target.classList.contains('popup')) {
+    //   const popup = new Popup(evt.target.closest('.popup'));
+    //   popup.close();
+    // };
   }
 }
