@@ -1,5 +1,5 @@
 //this class is for opening and closing popups
-import { closeButtons } from "../utils/constants.js";
+import { popupOverlays, closeButtons } from "../utils/constants.js";
 export default class Popup {
   constructor(popup) {
     this._popup = popup;
@@ -22,23 +22,20 @@ export default class Popup {
     };
   }
 
-  setEventListeners(evt) {
-    this._popup.addEventListener('click', function(evt) {
-      if (evt.target.classList.contains('popup')) {
-        this.close();
-      }
+  setEventListeners() {
+    popupOverlays.forEach((overlay) => {
+      overlay.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+          this.close();
+        }
+      });
     })
-    // closeButtons.forEach(button => {
-    //   button.addEventListener('click', function(evt) {
-    //     const popup = new Popup(evt.target.closest('.popup'));
-    //     popup.close();
-    //   });
-    // });
 
-
-    // if (evt.target.classList.contains('popup')) {
-    //   const popup = new Popup(evt.target.closest('.popup'));
-    //   popup.close();
-    // };
+    closeButtons.forEach(button => {
+      button.addEventListener('click', (evt) => {
+        const popup = new Popup(evt.target.closest('.popup'));
+        popup.close();
+      });
+    });
   }
 }

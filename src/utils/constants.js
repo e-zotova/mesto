@@ -5,10 +5,6 @@ const addButton = page.querySelector('.profile__add-button');
 const closeButtons = page.querySelectorAll('.popup__close-button');
 const places = page.querySelector('.places');
 
-//profile variables
-const fullName = page.querySelector('.profile__name');
-const job = page.querySelector('.profile__job');
-
 //profile popup variables
 const profilePopup = page.querySelector('.popup_profile');
 const profileFormElement = page.querySelector('.popup__profile-form');
@@ -69,6 +65,6 @@ const initialCards = [
   }
 ];
 
-export {places, editButton, addButton, closeButtons, popupOverlays, profilePopup, nameInput, fullName, jobInput, job,
+export {places, editButton, addButton, closeButtons, popupOverlays, profilePopup, nameInput, jobInput,
   imagePopup, bigImage, caption, newCardPopup, placeName, placeUrl, profileFormElement, newCardFormElement,
         validationObject, initialCards};

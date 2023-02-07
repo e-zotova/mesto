@@ -1,8 +1,8 @@
 // this class is to change user info on the page
 export default class UserInfo {
-  constructor(name, job) {
-    this._name = name;
-    this._job = job;
+  constructor(nameSelector, jobSelector) {
+    this._name = document.querySelector(nameSelector);
+    this._job = document.querySelector(jobSelector);
   }
 
   getUserInfo() {
@@ -14,8 +14,8 @@ export default class UserInfo {
     return userInfo;
   }
 
-  setUserInfo({name, job}) {
-    this._name.textContent = name;
-    this._job.textContent = job;
+  setUserInfo (data) {
+    this._name.textContent = data.username;
+    this._job.textContent = data.userjob;
   }
 }

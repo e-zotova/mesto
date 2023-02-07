@@ -1,47 +1,46 @@
-import {places, editButton, addButton, profilePopup, popupOverlays, nameInput, fullName, jobInput, job,
+import {places, editButton, addButton, profilePopup, nameInput, jobInput,
         newCardPopup, imagePopup, placeName, placeUrl, profileFormElement, newCardFormElement,
         validationObject, initialCards} from '../utils/constants.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
-import Popup from '../components/Popup.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 
-//add listeners to all popups
-popupOverlays.forEach((overlay) => {
-  const popup = new Popup(overlay);
-  overlay.addEventListener('mousedown', popup.setEventListeners.bind(popup));
-})
+// create user
+const user = new UserInfo('.profile__name', '.profile__job');
 
-const user = new UserInfo(fullName.textContent, job.textContent);
-
+// create profile instance
 const profile = new PopupWithForm({
   popup: profilePopup,
-  handleFormSubmit: () => {
-    fullName.textContent = nameInput.value;
-    job.textContent = jobInput.value;
-    profile.close();
+  handleFormSubmit: (data) => {
+    user.setUserInfo(data);
+    //profile.close();
   }
 });
 
-profile.setEventListeners();
+//open profile popup
+function openProfile() {
+  const {name, job} = user.getUserInfo()
+  nameInput.value = name;
+  jobInput.value = job;
 
-const card = new PopupWithForm({
-  popup: newCardPopup,
-  handleFormSubmit: () => {
+  profileFormValidator.resetValidation();
+  profile.setEventListeners();
+  profile.open();
+}
 
-  }
-});
+//add listener for edit button
+editButton.addEventListener('click', openProfile);
 
-card.setEventListeners();
-
+// create popup image instance
 const image = new PopupWithImage(imagePopup);
 
-// open image by click function
+// open image by click and set listeners
 function handleCardClick() {
   image.open(this._name, this._link);
+  image.setEventListeners();
 }
 
 //create cards from array
@@ -57,71 +56,37 @@ const cardList = new Section({
 
 cardList.renderItems();
 
-//open profile popup
-function openProfile() {
-  nameInput.value = user._name;
-  jobInput.value = user._job;
+// create card instance
+const cardPopup = new PopupWithForm({
+  popup: newCardPopup,
+  handleFormSubmit: () => {
+    const cardObjectArray = [{
+      name: placeName.value,
+      link: placeUrl.value,
+      alt: placeName.value
+    }];
 
-  profileFormValidator.resetValidation();
-  profile.open();
-}
+    const newCard = new Section({
+      items: cardObjectArray,
+      renderer: (element) => {
+        const card = new Card(element, '#card-template', handleCardClick);
+        const cardElement = card.generateCard();
 
-editButton.addEventListener('click', openProfile);
+        newCard.addItem(cardElement);
+      }
+    }, places);
 
-//submit profile
-// function submitProfileForm (evt) {
-//   evt.preventDefault();
-
-//   fullName.textContent = nameInput.value;
-//   job.textContent = jobInput.value;
-
-//   profile.close();
-// }
-
-// profileFormElement.addEventListener('submit', submitProfileForm);
-
-//open new card popup
-addButton.addEventListener('click', () => {
-  const cardPopup = new PopupWithForm({
-    popup: newCardPopup,
-    handleFormSubmit: (formData) => {
-
-    }
-  });
-  cardPopup.open();
+    newCard.renderItems();
+    cardPopup.close();
+  }
 });
 
-//submit new card
-function submitNewCardForm(evt) {
-  evt.preventDefault();
-
-  const cardObjectArray = [{
-    name: placeName.value,
-    link: placeUrl.value,
-    alt: placeName.value
-  }];
-
-  const newCard = new Section({
-    items: cardObjectArray,
-    renderer: (element) => {
-      const card = new Card(element, '#card-template', handleCardClick);
-      const cardElement = card.generateCard();
-
-      newCard.addItem(cardElement);
-    }
-  }, places);
-  newCard.renderItems();
-
-  const cardPopup = new PopupWithForm({
-    popup: newCardPopup,
-    handleFormSubmit: (formData) => {
-
-    }
-  });
-  cardPopup.close();
-}
-
-newCardFormElement.addEventListener('submit', submitNewCardForm);
+//open new card popup and set listeners
+addButton.addEventListener('click', () => {
+  cardPopup.setEventListeners();
+  newCardFormValidator.resetValidation();
+  cardPopup.open();
+});
 
 //validation for Profile form
 const profileFormValidator = new FormValidator(validationObject, profileFormElement);
