@@ -8,7 +8,6 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 
-
 const user = new UserInfo(fullName, job);
 
 // create profile instance
@@ -29,7 +28,6 @@ function openProfile() {
   profileFormValidator.resetValidation();
   profile.open();
 }
-
 
 const image = new PopupWithImage(imagePopup);
 
