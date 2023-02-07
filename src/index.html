@@ -18,11 +18,11 @@
           <h2 class="popup__header">Редактировать профиль</h2>
           <form class="popup__form popup__profile-form" name="edit-profile" novalidate>
             <label class="popup__label">
-              <input id="fullname" type="text" class="input input_type_full-name" placeholder="Имя" minlength="2" maxlength="40" required>
+              <input id="fullname" name="name" type="text" class="input input_type_full-name" placeholder="Имя" minlength="2" maxlength="40" required>
               <span class="fullname-error popup__input-error"></span>
             </label>
             <label class="popup__label">
-              <input id="job" type="text" class="input input_type_job" placeholder="О себе" minlength="2" maxlength="200" required>
+              <input id="job" type="text" name="job" class="input input_type_job" placeholder="О себе" minlength="2" maxlength="200" required>
               <span class="job-error popup__input-error"></span>
             </label>
             <button type="submit" class="button popup__save-button">Сохранить</button>

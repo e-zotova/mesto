@@ -1,4 +1,4 @@
-import {places, editButton, addButton, profilePopup, nameInput, jobInput,
+import {places, editButton, addButton, profilePopup, fullName, nameInput, job, jobInput,
         newCardPopup, imagePopup, placeName, placeUrl, profileFormElement, newCardFormElement,
         validationObject, initialCards} from '../utils/constants.js';
 import Card from '../components/Card.js';
@@ -8,17 +8,17 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 
-// create user
-const user = new UserInfo('.profile__name', '.profile__job');
+
+const user = new UserInfo(fullName, job);
 
 // create profile instance
 const profile = new PopupWithForm({
   popup: profilePopup,
   handleFormSubmit: (data) => {
     user.setUserInfo(data);
-    //profile.close();
   }
 });
+profile.setEventListeners();
 
 //open profile popup
 function openProfile() {
@@ -27,36 +27,37 @@ function openProfile() {
   jobInput.value = job;
 
   profileFormValidator.resetValidation();
-  profile.setEventListeners();
   profile.open();
 }
 
-//add listener for edit button
-editButton.addEventListener('click', openProfile);
 
-// create popup image instance
 const image = new PopupWithImage(imagePopup);
 
-// open image by click and set listeners
+// open image by click
 function handleCardClick() {
   image.open(this._name, this._link);
   image.setEventListeners();
+}
+
+// create card function
+function createCard(element, selector, handleCardClick) {
+  const card = new Card(element, selector, handleCardClick);
+  return card.generateCard();
 }
 
 //create cards from array
 const cardList = new Section({
   items: initialCards,
   renderer: (element) => {
-      const card = new Card(element,'#card-template', handleCardClick);
-      const cardElement = card.generateCard();
-
-      cardList.addItem(cardElement);
+      cardList.addItem(
+        createCard(element,'#card-template', handleCardClick)
+      );
   }
 }, places);
 
 cardList.renderItems();
 
-// create card instance
+// create new card
 const cardPopup = new PopupWithForm({
   popup: newCardPopup,
   handleFormSubmit: () => {
@@ -69,10 +70,9 @@ const cardPopup = new PopupWithForm({
     const newCard = new Section({
       items: cardObjectArray,
       renderer: (element) => {
-        const card = new Card(element, '#card-template', handleCardClick);
-        const cardElement = card.generateCard();
-
-        newCard.addItem(cardElement);
+        newCard.addItem(
+          createCard(element, '#card-template', handleCardClick)
+        );
       }
     }, places);
 
@@ -80,10 +80,12 @@ const cardPopup = new PopupWithForm({
     cardPopup.close();
   }
 });
+cardPopup.setEventListeners();
 
-//open new card popup and set listeners
+// add listeners for edit and add buttons
+editButton.addEventListener('click', openProfile);
+
 addButton.addEventListener('click', () => {
-  cardPopup.setEventListeners();
   newCardFormValidator.resetValidation();
   cardPopup.open();
 });

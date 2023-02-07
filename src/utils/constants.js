@@ -11,6 +11,9 @@ const profileFormElement = page.querySelector('.popup__profile-form');
 const nameInput = profileFormElement.querySelector('.input_type_full-name');
 const jobInput = profileFormElement.querySelector('.input_type_job');
 
+const fullName = page.querySelector('.profile__name');
+const job = page.querySelector('.profile__job');
+
 const imagePopup = document.querySelector('.popup_image-view');
 const bigImage = document.querySelector('.popup__big-image');
 const caption = document.querySelector('.popup__caption');
@@ -65,6 +68,6 @@ const initialCards = [
   }
 ];
 
-export {places, editButton, addButton, closeButtons, popupOverlays, profilePopup, nameInput, jobInput,
+export {places, editButton, addButton, closeButtons, popupOverlays, profilePopup, fullName, job, nameInput, jobInput,
   imagePopup, bigImage, caption, newCardPopup, placeName, placeUrl, profileFormElement, newCardFormElement,
         validationObject, initialCards};
