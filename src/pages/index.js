@@ -32,11 +32,11 @@ function openProfile() {
 }
 
 const image = new PopupWithImage(imagePopup);
+image.setEventListeners();
 
 // open image by click
-function handleCardClick() {
-  image.open(this._name, this._link);
-  image.setEventListeners();
+function handleCardClick(name, link) {
+  image.open(name, link);
 }
 
 // create card function

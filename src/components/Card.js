@@ -1,6 +1,3 @@
-import PopupWithImage from "./PopupWithImage.js";
-import { imagePopup } from "../utils/constants.js";
-
  export default class Card {
   constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
@@ -20,19 +17,19 @@ import { imagePopup } from "../utils/constants.js";
   }
 
   _setEventListeners() {
-    const cardImage = this._element.querySelector('.places__image');
-    const likeButton = this._element.querySelector('.places__like-button');
-    const deleteButton = this._element.querySelector('.places__delete-button');
+    this._cardImage = this._element.querySelector('.places__image');
+    this._likeButton = this._element.querySelector('.places__like-button');
+    this._deleteButton = this._element.querySelector('.places__delete-button');
 
-    cardImage.addEventListener('click', () => {
+    this._cardImage.addEventListener('click', () => {
       this._handleCardClick(this._name, this._link);
     });
 
-    likeButton.addEventListener('click', function (evt) {
+    this._likeButton.addEventListener('click', function (evt) {
       evt.target.classList.toggle('places__like-button_active');
     });
 
-    deleteButton.addEventListener('click', function (evt) {
+    this._deleteButton.addEventListener('click', function (evt) {
       evt.target.closest('.places__card').remove();
     });
   }
