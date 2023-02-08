@@ -1,3 +1,10 @@
+import elbrusImage from '../images/grid-elbrus.jpg';
+import dombaiImage from '../images/grid-dombai.jpg';
+import kosaImage from '../images/grid-kosa.jpg';
+import altaiImage from '../images/grid-altai.jpg';
+import baikalImage from '../images/grid-baikal.jpg';
+import karachaevskImage from '../images/grid-karachaevsk.jpg';
+
 const page = document.querySelector('.page');
 const popupOverlays = page.querySelectorAll('.popup');
 const editButton = page.querySelector('.profile__edit-button');
@@ -38,32 +45,32 @@ const validationObject = {
 const initialCards = [
   {
     name: 'Гора Эльбрус',
-    link: './images/grid-elbrus.jpg',
+    link: elbrusImage,
     alt: 'Вид на гору Эльбрус.'
   },
   {
     name: 'Домбай',
-    link: './images/grid-dombai.jpg',
+    link: dombaiImage,
     alt: 'Заснеженные вершины Домбая.'
   },
   {
     name: 'Куршская коса',
-    link: './images/grid-kosa.jpg',
+    link: kosaImage,
     alt: 'Берег Куршской косы.'
   },
   {
     name: 'Алтай',
-    link: './images/grid-altai.jpg',
+    link: altaiImage,
     alt: 'Ноутбук на фоне лесов Алтая.'
   },
   {
     name: 'Байкал',
-    link: './images/grid-baikal.jpg',
+    link: baikalImage,
     alt: 'Лед на озере Байкал.'
   },
   {
     name: 'Карачаево-Черкессия',
-    link: './images/grid-karachaevsk.jpg',
+    link: karachaevskImage,
     alt: 'Сентинский храм в Карачаево-Черкессии.'
   }
 ];

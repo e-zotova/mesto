@@ -4,13 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto Russia</title>
-  <link rel="icon" href="./images/mesto-icon.svg" type="image/svg">
-  <link href="./pages/index.css" rel="stylesheet">
+  <link rel="icon" href="<%=require('./images/mesto-icon.svg')%>" type="image/svg">
 </head>
 <body class="main">
   <div class="page">
     <header class="header">
-      <img class="header__logo" src="./images/header-logo.svg" alt="Логотип Место Россия">
+      <img class="header__logo" src="<%=require('./images/header-logo.svg')%>" alt="Логотип Место Россия">
     </header>
     <main class="content">
       <div class="popup popup_profile">
@@ -57,7 +56,7 @@
         </div>
       </div>
       <section class="profile">
-        <img class="profile__avatar" src="./images/profile-avatar.jpg" alt="Фото профиля.">
+        <img class="profile__avatar" src="<%=require('./images/profile-avatar.jpg')%>" alt="Фото профиля.">
         <div class="profile__info">
           <div class="profile__name-edit">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -84,9 +83,5 @@
       <p class="footer__copyright">&#169; 2022 Mesto Russia</p>
     </footer>
   </div>
-  <script type="module" src="./pages/index.js"></script>
-  <script type="module" src="./utils/constants.js"></script>
-  <script type="module" src="./components/Card.js"></script>
-  <script type="module" src="./components/FormValidator.js"></script>
 </body>
 </html>
