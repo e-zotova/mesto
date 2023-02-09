@@ -1,4 +1,3 @@
-//this class is to insert elements
 export default class Section {
   constructor({ items, renderer }, selector) {
     //items - массив данных, которые нужно добавить на страницу при инициализации класса

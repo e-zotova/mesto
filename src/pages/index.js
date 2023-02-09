@@ -49,10 +49,10 @@ function createCard(element, selector, handleCardClick) {
 const cardList = new Section({
   items: initialCards,
   renderer: (element) => {
-      cardList.addItem(
-        createCard(element,'#card-template', handleCardClick),
-        false
-      );
+    cardList.addItem(
+      createCard(element,'#card-template', handleCardClick),
+      false
+    );
   }
 }, places);
 

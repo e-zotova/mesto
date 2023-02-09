@@ -1,4 +1,3 @@
-//this class is for opening and closing popups
 export default class Popup {
   constructor(popup) {
     this._popup = popup;
@@ -31,7 +30,7 @@ export default class Popup {
     });
 
     this._closeButton.addEventListener('click', () => {
-        this.close();
-      });
+      this.close();
+    });
   }
 }

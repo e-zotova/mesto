@@ -1,4 +1,3 @@
-// this class is to change user info on the page
 export default class UserInfo {
   constructor(name, job) {
     this._name = name;
