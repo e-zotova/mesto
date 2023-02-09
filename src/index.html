@@ -34,11 +34,11 @@
           <h2 class="popup__header">Новое место</h2>
           <form class="popup__form popup__new-card-form" name="new-card" novalidate>
             <label class="popup__label">
-              <input id="placename" type="text" class="input input_type_place-name" placeholder="Название" minlength="2" maxlength="30" required>
+              <input id="placename" type="text" name="name" class="input input_type_place-name" placeholder="Название" minlength="2" maxlength="30" required>
               <span class="placename-error popup__input-error"></span>
             </label>
             <label class="popup__label">
-              <input id="url" type="url" class="input input_type_place-image" placeholder="Ссылка на картинку" required>
+              <input id="url" type="url" name="link" class="input input_type_place-image" placeholder="Ссылка на картинку" required>
               <span class="url-error popup__input-error"></span>
             </label>
             <button type="submit" class="button popup__save-button">Создать</button>

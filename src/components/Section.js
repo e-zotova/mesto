@@ -13,7 +13,7 @@ export default class Section {
     this._items.forEach(item => this._renderer(item));
   }
 
-  addItem(element) {
-    this._items.length === 1 ? this._container.prepend(element) : this._container.append(element);
+  addItem(element, prepend) {
+    prepend ? this._container.prepend(element) : this._container.append(element);
   }
 }

@@ -50,7 +50,8 @@ const cardList = new Section({
   items: initialCards,
   renderer: (element) => {
       cardList.addItem(
-        createCard(element,'#card-template', handleCardClick)
+        createCard(element,'#card-template', handleCardClick),
+        false
       );
   }
 }, places);
@@ -60,23 +61,11 @@ cardList.renderItems();
 // create new card
 const cardPopup = new PopupWithForm({
   popup: newCardPopup,
-  handleFormSubmit: () => {
-    const cardObjectArray = [{
-      name: placeName.value,
-      link: placeUrl.value,
-      alt: placeName.value
-    }];
-
-    const newCard = new Section({
-      items: cardObjectArray,
-      renderer: (element) => {
-        newCard.addItem(
-          createCard(element, '#card-template', handleCardClick)
-        );
-      }
-    }, places);
-
-    newCard.renderItems();
+  handleFormSubmit: (data) => {
+    cardList.addItem(
+      createCard(data, '#card-template', handleCardClick),
+      true
+    )
     cardPopup.close();
   }
 });
