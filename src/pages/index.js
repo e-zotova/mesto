@@ -79,6 +79,9 @@ const cardPopup = new PopupWithForm({
           true
         )
       })
+      .catch((err) => {
+        console.log(err);
+      });
     cardPopup.close();
   }
 });
