@@ -1,13 +1,13 @@
 import {places, editButton, addButton, profilePopup, fullName, nameInput, job, jobInput,
         newCardPopup, imagePopup, profileFormElement, newCardFormElement,
-        validationObject, apiConfig} from '../utils/constants.js';
+        validationObject} from '../utils/constants.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
-import Api from '../components/Api.js';
+import {Api, apiConfig} from '../components/Api.js';
 
 import '../pages/index.css';
 

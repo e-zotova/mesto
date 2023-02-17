@@ -34,14 +34,6 @@ const validationObject = {
   errorMessageClass: 'popup__input-error_active'
 };
 
-const apiConfig = {
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-60",
-  headers: {
-    authorization: "095d3f4f-e15b-43ab-9be7-70fc7024aa3b",
-    'Content-Type': 'application/json'
-  }
-}
-
 export {places, editButton, addButton, closeButtons, popupOverlays, profilePopup, fullName, job, nameInput, jobInput,
   imagePopup, bigImage, caption, newCardPopup, placeName, placeUrl, profileFormElement, newCardFormElement,
-        validationObject, apiConfig};
+        validationObject};
