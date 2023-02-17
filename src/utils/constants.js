@@ -1,10 +1,3 @@
-import elbrusImage from '../images/grid-elbrus.jpg';
-import dombaiImage from '../images/grid-dombai.jpg';
-import kosaImage from '../images/grid-kosa.jpg';
-import altaiImage from '../images/grid-altai.jpg';
-import baikalImage from '../images/grid-baikal.jpg';
-import karachaevskImage from '../images/grid-karachaevsk.jpg';
-
 const page = document.querySelector('.page');
 const popupOverlays = page.querySelectorAll('.popup');
 const editButton = page.querySelector('.profile__edit-button');
@@ -41,40 +34,14 @@ const validationObject = {
   errorMessageClass: 'popup__input-error_active'
 };
 
-//initial cards array
-const initialCards = [
-  {
-    name: 'Гора Эльбрус',
-    link: elbrusImage,
-    alt: 'Вид на гору Эльбрус.'
-  },
-  {
-    name: 'Домбай',
-    link: dombaiImage,
-    alt: 'Заснеженные вершины Домбая.'
-  },
-  {
-    name: 'Куршская коса',
-    link: kosaImage,
-    alt: 'Берег Куршской косы.'
-  },
-  {
-    name: 'Алтай',
-    link: altaiImage,
-    alt: 'Ноутбук на фоне лесов Алтая.'
-  },
-  {
-    name: 'Байкал',
-    link: baikalImage,
-    alt: 'Лед на озере Байкал.'
-  },
-  {
-    name: 'Карачаево-Черкессия',
-    link: karachaevskImage,
-    alt: 'Сентинский храм в Карачаево-Черкессии.'
+const apiConfig = {
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-60",
+  headers: {
+    authorization: "095d3f4f-e15b-43ab-9be7-70fc7024aa3b",
+    'Content-Type': 'application/json'
   }
-];
+}
 
 export {places, editButton, addButton, closeButtons, popupOverlays, profilePopup, fullName, job, nameInput, jobInput,
   imagePopup, bigImage, caption, newCardPopup, placeName, placeUrl, profileFormElement, newCardFormElement,
-        validationObject, initialCards};
+        validationObject, apiConfig};

@@ -1,14 +1,18 @@
 import {places, editButton, addButton, profilePopup, fullName, nameInput, job, jobInput,
-        newCardPopup, imagePopup, placeName, placeUrl, profileFormElement, newCardFormElement,
-        validationObject, initialCards} from '../utils/constants.js';
+        newCardPopup, imagePopup, profileFormElement, newCardFormElement,
+        validationObject, apiConfig} from '../utils/constants.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js';
 
 import '../pages/index.css';
+
+const api = new Api(apiConfig);
+let cardList = {};
 
 const user = new UserInfo(fullName, job);
 
@@ -40,32 +44,41 @@ function handleCardClick(name, link) {
 }
 
 // create card function
-function createCard(element, selector, handleCardClick) {
+function generateCard(element, selector, handleCardClick) {
   const card = new Card(element, selector, handleCardClick);
   return card.generateCard();
 }
 
 //create cards from array
-const cardList = new Section({
-  items: initialCards,
-  renderer: (element) => {
-    cardList.addItem(
-      createCard(element,'#card-template', handleCardClick),
-      false
-    );
-  }
-}, places);
+api.getInitialCards()
+  .then((result) => {
+    cardList = new Section({
+      items: result,
+      renderer: (element) => {
+        cardList.addItem(
+          generateCard(element,'#card-template', handleCardClick),
+          false
+        );
+      }
+    }, places);
+    cardList.renderItems();
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
-cardList.renderItems();
 
 // create new card
 const cardPopup = new PopupWithForm({
   popup: newCardPopup,
   handleFormSubmit: (data) => {
-    cardList.addItem(
-      createCard(data, '#card-template', handleCardClick),
-      true
-    )
+    api.createCard(data)
+      .then((cardData) => {
+        cardList.addItem(
+          generateCard(cardData, '#card-template', handleCardClick),
+          true
+        )
+      })
     cardPopup.close();
   }
 });
