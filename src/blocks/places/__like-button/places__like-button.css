@@ -2,7 +2,6 @@
   background: no-repeat url(../../../images/like-button.svg);
   min-height: 19px;
   min-width: 22px;
-  margin-right: 20px;
 }
 
 .places__like-button:hover {
