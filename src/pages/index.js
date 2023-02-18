@@ -1,5 +1,5 @@
-import {places, editButton, addButton, profilePopup, fullName, nameInput, job, jobInput,
-        newCardPopup, imagePopup, profileFormElement, newCardFormElement,
+import {places, editButton, addButton, profilePopup, fullName, nameInput, job, avatar,
+        jobInput, newCardPopup, imagePopup, profileFormElement, newCardFormElement,
         validationObject} from '../utils/constants.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
@@ -12,15 +12,26 @@ import {Api, apiConfig} from '../components/Api.js';
 import '../pages/index.css';
 
 const api = new Api(apiConfig);
+let user = {};
 let cardList = {};
 
-const user = new UserInfo(fullName, job);
+api.getUser()
+  .then((result) => {
+    user = new UserInfo(fullName, job);
+    fullName.textContent = result.name;
+    job.textContent = result.about;
+    avatar.src = result.avatar;
+  })
+
 
 // create profile instance
 const profile = new PopupWithForm({
   popup: profilePopup,
   handleFormSubmit: (data) => {
-    user.setUserInfo(data);
+    api.setUser(data)
+      .then((result) => {
+        user.setUserInfo(result.name, result.about);
+      })
   }
 });
 profile.setEventListeners();

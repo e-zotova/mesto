@@ -12,6 +12,25 @@ export class Api {
     this._baseUrl = config.baseUrl
   }
 
+  getUser() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      headers: this._headers
+    })
+      .then(handleResponse)
+  }
+
+  setUser(data) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.name,
+        about: data.job
+      })
+    })
+      .then(handleResponse)
+  }
+
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
@@ -29,7 +48,7 @@ export class Api {
   }
 
   deleteCard() {
-
+    return fetch(`${this._baseUrl}/cards/${id}`)
   }
 }
 

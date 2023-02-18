@@ -13,6 +13,7 @@ const jobInput = profileFormElement.querySelector('.input_type_job');
 
 const fullName = page.querySelector('.profile__name');
 const job = page.querySelector('.profile__job');
+const avatar = page.querySelector('.profile__avatar')
 
 const imagePopup = document.querySelector('.popup_image-view');
 const bigImage = document.querySelector('.popup__big-image');
@@ -34,6 +35,6 @@ const validationObject = {
   errorMessageClass: 'popup__input-error_active'
 };
 
-export {places, editButton, addButton, closeButtons, popupOverlays, profilePopup, fullName, job, nameInput, jobInput,
-  imagePopup, bigImage, caption, newCardPopup, placeName, placeUrl, profileFormElement, newCardFormElement,
-        validationObject};
+export {places, editButton, addButton, closeButtons, popupOverlays, profilePopup, fullName, job,
+  avatar, nameInput, jobInput, imagePopup, bigImage, caption, newCardPopup, placeName, placeUrl,
+  profileFormElement, newCardFormElement, validationObject};
