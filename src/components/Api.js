@@ -9,7 +9,8 @@ const handleResponse = (res) => {
 export class Api {
   constructor(config) {
     this._headers = config.headers;
-    this._baseUrl = config.baseUrl
+    this._baseUrl = config.baseUrl;
+    this._id = config._id;
   }
 
   getUser() {
@@ -47,8 +48,25 @@ export class Api {
       .then(handleResponse)
   }
 
-  deleteCard() {
-    return fetch(`${this._baseUrl}/cards/${id}`)
+  deleteCard(id) {
+    return fetch(`${this._baseUrl}/cards/${id}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+      .then(handleResponse)
+  }
+
+  likeCard() {
+    return fetch(`${this._baseUrl}/cards/${this._id}/likes`, {
+      method: 'PUT',
+      headers: this._headers,
+      body: JSON.stringify(data)
+    })
+      .then(handleResponse)
+  }
+
+  unlikeCard() {
+
   }
 }
 

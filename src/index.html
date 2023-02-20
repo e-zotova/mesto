@@ -55,6 +55,15 @@
           <button type="reset" aria-label="Закрыть" class="button popup__close-button"></button>
         </div>
       </div>
+      <div class="popup popup_delete-card">
+        <div class="popup__container">
+          <h2 class="popup__header">Вы уверены?</h2>
+          <form class="popup__form popup__delete-card-form" name="delete-card" novalidate>
+            <button class="button popup__save-button">Да</button>
+          </form>
+          <button type="reset" aria-label="Закрыть" class="button popup__close-button"></button>
+        </div>
+      </div>
       <section class="profile">
         <img class="profile__avatar" src="<%=require('./images/profile-avatar.jpg')%>" alt="Фото профиля.">
         <div class="profile__info">

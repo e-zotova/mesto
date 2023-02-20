@@ -1,11 +1,13 @@
  export default class Card {
-  constructor(data, templateSelector, handleCardClick) {
+  constructor(data, templateSelector, handleCardClick, handleConfirmDelete) {
+    this._id = data._id;
     this._name = data.name;
     this._link = data.link;
     this._alt = data.alt;
     this._likes = data.likes.length;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._handleConfirmDelete = handleConfirmDelete;
   }
 
   _getTemplate() {
@@ -26,8 +28,8 @@
       evt.target.classList.toggle('places__like-button_active');
     });
 
-    this._delete.addEventListener('click', function (evt) {
-      evt.target.closest('.places__card').remove();
+    this._deleteButton.addEventListener('click', () => {
+      this._handleConfirmDelete(this._id);
     });
   }
 
@@ -37,7 +39,7 @@
     this._cardImage = this._element.querySelector('.places__image');
     this._likeButton = this._element.querySelector('.places__like-button');
     this._likeCounter = this._element.querySelector('.places__like-counter');
-    this._delete = this._element.querySelector('.places__delete-button');
+    this._deleteButton = this._element.querySelector('.places__delete-button');
     this._setEventListeners();
 
     this._cardName.textContent = this._name;

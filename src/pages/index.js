@@ -1,9 +1,10 @@
 import {places, editButton, addButton, profilePopup, fullName, nameInput, job, avatar,
         jobInput, newCardPopup, imagePopup, profileFormElement, newCardFormElement,
-        validationObject} from '../utils/constants.js';
+        validationObject, deletePopup} from '../utils/constants.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
+import PopupConfirm from '../components/PopupConfirm.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
@@ -55,8 +56,8 @@ function handleCardClick(name, link) {
 }
 
 // create card function
-function generateCard(element, selector, handleCardClick) {
-  const card = new Card(element, selector, handleCardClick);
+function generateCard(element, selector, handleCardClick, handleConfirmDelete) {
+  const card = new Card(element, selector, handleCardClick, handleConfirmDelete);
   return card.generateCard();
 }
 
@@ -67,7 +68,7 @@ api.getInitialCards()
       items: result,
       renderer: (element) => {
         cardList.addItem(
-          generateCard(element,'#card-template', handleCardClick),
+          generateCard(element,'#card-template', handleCardClick, handleConfirmDelete),
           false
         );
       }
@@ -86,7 +87,7 @@ const cardPopup = new PopupWithForm({
     api.createCard(data)
       .then((cardData) => {
         cardList.addItem(
-          generateCard(cardData, '#card-template', handleCardClick),
+          generateCard(cardData, '#card-template', handleCardClick, handleConfirmDelete),
           true
         )
       })
@@ -97,6 +98,26 @@ const cardPopup = new PopupWithForm({
   }
 });
 cardPopup.setEventListeners();
+
+//delete card
+const popupConfirm = new PopupConfirm({
+  popup: deletePopup,
+  handleSubmit: (id) => {
+    api.deleteCard(id)
+    .then(() => {
+      popupConfirm.close();
+    })
+    .catch((err) => {
+      console.log(err);
+      popupConfirm.close();
+    });
+  }
+});
+popupConfirm.setEventListeners();
+
+function handleConfirmDelete(id) {
+  popupConfirm.open(id);
+}
 
 // add listeners for edit and add buttons
 editButton.addEventListener('click', openProfile);
