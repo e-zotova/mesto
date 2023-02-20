@@ -16,6 +16,7 @@ const api = new Api(apiConfig);
 let user = {};
 let cardList = {};
 
+// get current user
 api.getUser()
   .then((result) => {
     user = new UserInfo(fullName, job);
@@ -36,7 +37,6 @@ const profile = new PopupWithForm({
 });
 profile.setEventListeners();
 
-//open profile popup
 function openProfile() {
   const {name, job} = user.getUserInfo()
   nameInput.value = name;
@@ -49,22 +49,25 @@ function openProfile() {
 const image = new PopupWithImage(imagePopup);
 image.setEventListeners();
 
-// open image by click
 function handleCardClick(name, link) {
   image.open(name, link);
 }
 
-function showDeleteButton(owner) {
+function handleConfirmDelete(id, cardElement) {
+  popupConfirm.open(id, cardElement);
+}
+
+function showDeleteButton(owner, deleteButton) {
   api.getUser().then((result) => {
     result._id === owner._id ?
-      this._deleteButton.style.display = 'block' : this._deleteButton.style.display = 'none';
+      deleteButton.style.display = 'block' : deleteButton.style.display = 'none';
     })
     .catch((err) => {
       console.log(err);
     });
 }
 
-// create card function
+// generate card
 function generateCard(element, selector, handleCardClick, handleConfirmDelete, showDeleteButton, user) {
   const card = new Card(element, selector, handleCardClick, handleConfirmDelete, showDeleteButton, user);
   return card.generateCard();
@@ -111,9 +114,10 @@ cardPopup.setEventListeners();
 //delete card
 const popupConfirm = new PopupConfirm({
   popup: deletePopup,
-  handleSubmit: (id) => {
+  handleSubmit: (id, cardElement) => {
     api.deleteCard(id)
       .then(() => {
+        cardElement.remove();
         popupConfirm.close();
       })
       .catch((err) => {
@@ -123,10 +127,6 @@ const popupConfirm = new PopupConfirm({
   }
 });
 popupConfirm.setEventListeners();
-
-function handleConfirmDelete(id) {
-  popupConfirm.open(id);
-}
 
 // add listeners for edit and add buttons
 editButton.addEventListener('click', openProfile);

@@ -1,11 +1,11 @@
  export default class Card {
   constructor(data, templateSelector, handleCardClick, handleConfirmDelete, showDeleteButton) {
     this._id = data._id;
+    this._templateSelector = templateSelector;
     this._name = data.name;
     this._link = data.link;
     this._alt = data.alt;
     this._likes = data.likes.length;
-    this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._handleConfirmDelete = handleConfirmDelete;
     this._showDeleteButton = showDeleteButton;
@@ -31,19 +31,20 @@
     });
 
     this._deleteButton.addEventListener('click', () => {
-      this._handleConfirmDelete(this._id);
+      this._handleConfirmDelete(this._id, this._cardElement);
     });
   }
 
   generateCard() {
     this._element = this._getTemplate();
+    this._cardElement = this._element.querySelector('.places__card');
     this._cardName = this._element.querySelector('.places__name');
     this._cardImage = this._element.querySelector('.places__image');
     this._likeButton = this._element.querySelector('.places__like-button');
     this._likeCounter = this._element.querySelector('.places__like-counter');
     this._deleteButton = this._element.querySelector('.places__delete-button');
+    this._showDeleteButton(this._owner, this._deleteButton);
     this._setEventListeners();
-    this._showDeleteButton(this._owner);
 
     this._cardName.textContent = this._name;
     this._cardImage.src = this._link;
