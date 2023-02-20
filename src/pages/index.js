@@ -14,11 +14,13 @@ import '../pages/index.css';
 
 const api = new Api(apiConfig);
 let user = {};
+let currentUserId = {};
 let cardList = {};
 
 // get current user
 api.getUser()
   .then((result) => {
+    currentUserId = result._id;
     user = new UserInfo(fullName, job);
     fullName.textContent = result.name;
     job.textContent = result.about;
@@ -58,13 +60,8 @@ function handleConfirmDelete(id, cardElement) {
 }
 
 function showDeleteButton(owner, deleteButton) {
-  api.getUser().then((result) => {
-    result._id === owner._id ?
+    currentUserId === owner._id ?
       deleteButton.style.display = 'block' : deleteButton.style.display = 'none';
-    })
-    .catch((err) => {
-      console.log(err);
-    });
 }
 
 // generate card
