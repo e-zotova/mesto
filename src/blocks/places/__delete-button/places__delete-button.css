@@ -1,5 +1,6 @@
 .places__delete-button {
   position: absolute;
+  display: none;
   top: 20px;
   right: 20px;
   background: no-repeat url(../../../images/delete-button.svg);

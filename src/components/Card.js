@@ -1,5 +1,5 @@
  export default class Card {
-  constructor(data, templateSelector, handleCardClick, handleConfirmDelete) {
+  constructor(data, templateSelector, handleCardClick, handleConfirmDelete, showDeleteButton) {
     this._id = data._id;
     this._name = data.name;
     this._link = data.link;
@@ -8,6 +8,8 @@
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._handleConfirmDelete = handleConfirmDelete;
+    this._showDeleteButton = showDeleteButton;
+    this._owner = data.owner;
   }
 
   _getTemplate() {
@@ -41,6 +43,7 @@
     this._likeCounter = this._element.querySelector('.places__like-counter');
     this._deleteButton = this._element.querySelector('.places__delete-button');
     this._setEventListeners();
+    this._showDeleteButton(this._owner);
 
     this._cardName.textContent = this._name;
     this._cardImage.src = this._link;

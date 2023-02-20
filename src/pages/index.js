@@ -24,7 +24,6 @@ api.getUser()
     avatar.src = result.avatar;
   })
 
-
 // create profile instance
 const profile = new PopupWithForm({
   popup: profilePopup,
@@ -55,9 +54,19 @@ function handleCardClick(name, link) {
   image.open(name, link);
 }
 
+function showDeleteButton(owner) {
+  api.getUser().then((result) => {
+    result._id === owner._id ?
+      this._deleteButton.style.display = 'block' : this._deleteButton.style.display = 'none';
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
 // create card function
-function generateCard(element, selector, handleCardClick, handleConfirmDelete) {
-  const card = new Card(element, selector, handleCardClick, handleConfirmDelete);
+function generateCard(element, selector, handleCardClick, handleConfirmDelete, showDeleteButton, user) {
+  const card = new Card(element, selector, handleCardClick, handleConfirmDelete, showDeleteButton, user);
   return card.generateCard();
 }
 
@@ -68,7 +77,7 @@ api.getInitialCards()
       items: result,
       renderer: (element) => {
         cardList.addItem(
-          generateCard(element,'#card-template', handleCardClick, handleConfirmDelete),
+          generateCard(element, '#card-template', handleCardClick, handleConfirmDelete, showDeleteButton),
           false
         );
       }
@@ -87,7 +96,7 @@ const cardPopup = new PopupWithForm({
     api.createCard(data)
       .then((cardData) => {
         cardList.addItem(
-          generateCard(cardData, '#card-template', handleCardClick, handleConfirmDelete),
+          generateCard(cardData, '#card-template', handleCardClick, handleConfirmDelete, showDeleteButton),
           true
         )
       })
@@ -104,13 +113,13 @@ const popupConfirm = new PopupConfirm({
   popup: deletePopup,
   handleSubmit: (id) => {
     api.deleteCard(id)
-    .then(() => {
-      popupConfirm.close();
-    })
-    .catch((err) => {
-      console.log(err);
-      popupConfirm.close();
-    });
+      .then(() => {
+        popupConfirm.close();
+      })
+      .catch((err) => {
+        console.log(err);
+        popupConfirm.close();
+      });
   }
 });
 popupConfirm.setEventListeners();
