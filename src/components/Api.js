@@ -32,6 +32,15 @@ export class Api {
       .then(handleResponse)
   }
 
+  editAvatar(data) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify(data)
+    })
+      .then(handleResponse)
+  }
+
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
@@ -51,7 +60,7 @@ export class Api {
   deleteCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: 'DELETE',
-      headers: this._headers,
+      headers: this._headers
     })
       .then(handleResponse)
   }
@@ -59,7 +68,7 @@ export class Api {
   likeCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'PUT',
-      headers: this._headers,
+      headers: this._headers
     })
       .then(handleResponse)
   }
@@ -67,7 +76,7 @@ export class Api {
   unlikeCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'DELETE',
-      headers: this._headers,
+      headers: this._headers
     })
       .then(handleResponse)
   }

@@ -1,6 +1,7 @@
 import {places, editButton, addButton, profilePopup, fullName, nameInput, job, avatar,
         jobInput, newCardPopup, imagePopup, profileFormElement, newCardFormElement,
-        validationObject, deletePopup} from '../utils/constants.js';
+        validationObject, deletePopup, editAvatarButton, editAvatarPopup,
+        avatarFormElement, avatarInput} from '../utils/constants.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
@@ -35,6 +36,9 @@ const profile = new PopupWithForm({
       .then((result) => {
         user.setUserInfo(result.name, result.about);
       })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 });
 profile.setEventListeners();
@@ -46,6 +50,26 @@ function openProfile() {
 
   profileFormValidator.resetValidation();
   profile.open();
+}
+
+// create edit avatar instance
+const editAvatar = new PopupWithForm({
+  popup: editAvatarPopup,
+  handleFormSubmit: (data) => {
+    api.editAvatar(data)
+      .then((result) => {
+        avatar.src = result.avatar;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+});
+editAvatar.setEventListeners();
+
+function openEditAvatar() {
+  avatarInput.value = avatar.src;
+  editAvatar.open();
 }
 
 const image = new PopupWithImage(imagePopup);
@@ -166,6 +190,8 @@ popupConfirm.setEventListeners();
 // add listeners for edit and add buttons
 editButton.addEventListener('click', openProfile);
 
+editAvatarButton.addEventListener('click', openEditAvatar);
+
 addButton.addEventListener('click', () => {
   newCardFormValidator.resetValidation();
   cardPopup.open();
@@ -174,6 +200,9 @@ addButton.addEventListener('click', () => {
 //validation for Profile form
 const profileFormValidator = new FormValidator(validationObject, profileFormElement);
 profileFormValidator.enableValidation();
+
+const avatarFormValidator = new FormValidator(validationObject, avatarFormElement);
+avatarFormValidator.enableValidation();
 
 //validation for new card form
 const newCardFormValidator = new FormValidator(validationObject, newCardFormElement);

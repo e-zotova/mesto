@@ -64,9 +64,22 @@
           <button type="reset" aria-label="Закрыть" class="button popup__close-button"></button>
         </div>
       </div>
+      <div class="popup popup_edit-avatar">
+        <div class="popup__container">
+          <h2 class="popup__header">Обновить аватар</h2>
+          <form class="popup__form popup__edit-avatar-form" name="edit-avatar" novalidate>
+            <label class="popup__label">
+              <input id="url" type="url" name="avatar" class="input input_type_avatar-image" placeholder="Ссылка на картинку" required>
+              <span class="url-error popup__input-error"></span>
+            </label>
+            <button class="button popup__save-button">Сохранить</button>
+          </form>
+          <button type="reset" aria-label="Закрыть" class="button popup__close-button"></button>
+        </div>
+      </div>
       <section class="profile">
         <div class="profile__container">
-          <img class="profile__avatar" src="<%=require('./images/profile-avatar.jpg')%>" alt="Фото профиля.">
+          <img class="profile__avatar" src="#" alt="Фото профиля.">
           <div class="profile__overlay">
             <a class="profile__edit-avatar" href="#"></a>
           </div>

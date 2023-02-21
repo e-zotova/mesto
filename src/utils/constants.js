@@ -25,6 +25,11 @@ const newCardFormElement = page.querySelector('.popup__new-card-form');
 
 const deletePopup = document.querySelector('.popup_delete-card');
 
+const editAvatarButton = page.querySelector('.profile__edit-avatar');
+const editAvatarPopup = document.querySelector('.popup_edit-avatar');
+const avatarFormElement = page.querySelector('.popup__edit-avatar-form');
+const avatarInput = avatarFormElement.querySelector('.input_type_avatar-image');
+
 const placeName = page.querySelector('#placename');
 const placeUrl = page.querySelector('#url');
 
@@ -39,4 +44,5 @@ const validationObject = {
 
 export {places, editButton, addButton, closeButtons, popupOverlays, profilePopup, fullName, job,
   avatar, nameInput, jobInput, imagePopup, bigImage, caption, newCardPopup, placeName, placeUrl,
-  deletePopup, profileFormElement, newCardFormElement, validationObject};
+  deletePopup, profileFormElement, newCardFormElement, validationObject, editAvatarButton,
+  editAvatarPopup, avatarFormElement, avatarInput};
