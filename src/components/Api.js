@@ -56,17 +56,20 @@ export class Api {
       .then(handleResponse)
   }
 
-  likeCard() {
-    return fetch(`${this._baseUrl}/cards/${this._id}/likes`, {
+  likeCard(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'PUT',
       headers: this._headers,
-      body: JSON.stringify(data)
     })
       .then(handleResponse)
   }
 
-  unlikeCard() {
-
+  unlikeCard(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+      .then(handleResponse)
   }
 }
 

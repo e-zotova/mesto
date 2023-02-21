@@ -60,13 +60,49 @@ function handleConfirmDelete(id, cardElement) {
 }
 
 function showDeleteButton(owner, deleteButton) {
-    currentUserId === owner._id ?
-      deleteButton.style.display = 'block' : deleteButton.style.display = 'none';
+  if(currentUserId === owner._id) {
+    deleteButton.style.display = 'block';
+  } else {
+    deleteButton.style.display = 'none';
+  }
+}
+
+function likeCard(id, likeCount, likeButton) {
+  api.likeCard(id, likeCount)
+    .then((result) => {
+      likeButton.classList.toggle('places__like-button_active')
+      likeCount.textContent = result.likes.length;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+function unlikeCard(id, likeCount, likeButton) {
+  api.unlikeCard(id, likeCount)
+    .then((result) => {
+      likeButton.classList.remove('places__like-button_active')
+      likeCount.textContent = result.likes.length;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+function showLikedCard(likesArray, likeButton) {
+  likesArray.find(like => {
+    if(like._id === currentUserId) {
+      likeButton.classList.toggle('places__like-button_active');
+      console.log();
+    }
+  });
 }
 
 // generate card
-function generateCard(element, selector, handleCardClick, handleConfirmDelete, showDeleteButton, user) {
-  const card = new Card(element, selector, handleCardClick, handleConfirmDelete, showDeleteButton, user);
+function generateCard(element, selector, handleCardClick,
+         handleConfirmDelete, showDeleteButton, likeCard, unlikeCard, showLikedCard) {
+  const card = new Card(element, selector, handleCardClick, handleConfirmDelete,
+                        showDeleteButton, likeCard, unlikeCard, showLikedCard);
   return card.generateCard();
 }
 
@@ -77,7 +113,8 @@ api.getInitialCards()
       items: result,
       renderer: (element) => {
         cardList.addItem(
-          generateCard(element, '#card-template', handleCardClick, handleConfirmDelete, showDeleteButton),
+          generateCard(element, '#card-template', handleCardClick, handleConfirmDelete,
+                      showDeleteButton, likeCard, unlikeCard, showLikedCard),
           false
         );
       }
@@ -96,7 +133,8 @@ const cardPopup = new PopupWithForm({
     api.createCard(data)
       .then((cardData) => {
         cardList.addItem(
-          generateCard(cardData, '#card-template', handleCardClick, handleConfirmDelete, showDeleteButton),
+          generateCard(cardData, '#card-template', handleCardClick, handleConfirmDelete,
+                      showDeleteButton, likeCard, unlikeCard, showLikedCard),
           true
         )
       })
