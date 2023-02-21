@@ -65,7 +65,12 @@
         </div>
       </div>
       <section class="profile">
-        <img class="profile__avatar" src="<%=require('./images/profile-avatar.jpg')%>" alt="Фото профиля.">
+        <div class="profile__container">
+          <img class="profile__avatar" src="<%=require('./images/profile-avatar.jpg')%>" alt="Фото профиля.">
+          <div class="profile__overlay">
+            <a class="profile__edit-avatar" href="#"></a>
+          </div>
+        </div>
         <div class="profile__info">
           <div class="profile__name-edit">
             <h1 class="profile__name"></h1>
