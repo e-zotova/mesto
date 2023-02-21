@@ -1,7 +1,7 @@
 import {places, editButton, addButton, profilePopup, fullName, nameInput, job, avatar,
         jobInput, newCardPopup, imagePopup, profileFormElement, newCardFormElement,
         validationObject, deletePopup, editAvatarButton, editAvatarPopup,
-        avatarFormElement, avatarInput} from '../utils/constants.js';
+        avatarFormElement, avatarInput, saveButton} from '../utils/constants.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
@@ -32,14 +32,19 @@ api.getUser()
 const profile = new PopupWithForm({
   popup: profilePopup,
   handleFormSubmit: (data) => {
+    saveButton.textContent = "Сохранение...";
     api.setUser(data)
       .then((result) => {
         user.setUserInfo(result.name, result.about);
       })
       .catch((err) => {
         console.log(err);
-      });
-  }
+      })
+      .finally(() => {
+        saveButton.textContent = "Сохранить";
+        profile.close();
+      })
+   }
 });
 profile.setEventListeners();
 
@@ -56,19 +61,25 @@ function openProfile() {
 const editAvatar = new PopupWithForm({
   popup: editAvatarPopup,
   handleFormSubmit: (data) => {
+    saveButton.textContent = "Сохранение...";
     api.editAvatar(data)
       .then((result) => {
         avatar.src = result.avatar;
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => {
+        saveButton.textContent = "Сохранить";
+        editAvatar.close();
+      })
   }
 });
 editAvatar.setEventListeners();
 
 function openEditAvatar() {
   avatarInput.value = avatar.src;
+  avatarFormValidator.resetValidation();
   editAvatar.open();
 }
 
@@ -113,7 +124,7 @@ function unlikeCard(id, likeCount, likeButton) {
     });
 }
 
-function showLikedCard(likesArray, likeButton) {
+function showLikedCards(likesArray, likeButton) {
   likesArray.find(like => {
     if(like._id === currentUserId) {
       likeButton.classList.toggle('places__like-button_active');
@@ -124,9 +135,9 @@ function showLikedCard(likesArray, likeButton) {
 
 // generate card
 function generateCard(element, selector, handleCardClick,
-         handleConfirmDelete, showDeleteButton, likeCard, unlikeCard, showLikedCard) {
+         handleConfirmDelete, showDeleteButton, likeCard, unlikeCard, showLikedCards) {
   const card = new Card(element, selector, handleCardClick, handleConfirmDelete,
-                        showDeleteButton, likeCard, unlikeCard, showLikedCard);
+                        showDeleteButton, likeCard, unlikeCard, showLikedCards);
   return card.generateCard();
 }
 
@@ -138,7 +149,7 @@ api.getInitialCards()
       renderer: (element) => {
         cardList.addItem(
           generateCard(element, '#card-template', handleCardClick, handleConfirmDelete,
-                      showDeleteButton, likeCard, unlikeCard, showLikedCard),
+                      showDeleteButton, likeCard, unlikeCard, showLikedCards),
           false
         );
       }
@@ -158,7 +169,7 @@ const cardPopup = new PopupWithForm({
       .then((cardData) => {
         cardList.addItem(
           generateCard(cardData, '#card-template', handleCardClick, handleConfirmDelete,
-                      showDeleteButton, likeCard, unlikeCard, showLikedCard),
+                      showDeleteButton, likeCard, unlikeCard, showLikedCards),
           true
         )
       })
