@@ -1,6 +1,6 @@
 import Popup from "./Popup";
 
-export default class PopupConfirm extends Popup {
+export default class PopupWithConfirmation extends Popup {
   constructor({popup, handleSubmit}) {
     super(popup);
     this._form = this._popup.querySelector('.popup__form');

@@ -5,7 +5,7 @@ import {places, editButton, addButton, profilePopup, fullName, nameInput, job, a
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
-import PopupConfirm from '../components/PopupConfirm.js';
+import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
@@ -80,7 +80,7 @@ function handleCardClick(name, link) {
 }
 
 function handleConfirmDelete(id, cardElement) {
-  popupConfirm.open(id, cardElement);
+  popupWithConfirmation.open(id, cardElement);
 }
 
 function showDeleteButton(owner, deleteButton) {
@@ -171,21 +171,21 @@ const cardPopup = new PopupWithForm({
 cardPopup.setEventListeners();
 
 //delete card
-const popupConfirm = new PopupConfirm({
+const popupWithConfirmation = new PopupWithConfirmation({
   popup: deletePopup,
   handleSubmit: (id, cardElement) => {
     api.deleteCard(id)
       .then(() => {
         cardElement.remove();
-        popupConfirm.close();
+        popupWithConfirmation.close();
       })
       .catch((err) => {
         console.log(err);
-        popupConfirm.close();
+        popupWithConfirmation.close();
       });
   }
 });
-popupConfirm.setEventListeners();
+popupWithConfirmation.setEventListeners();
 
 // add listeners for edit and add buttons
 editButton.addEventListener('click', openProfile);
