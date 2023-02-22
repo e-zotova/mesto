@@ -96,7 +96,6 @@ function showLikedCards(likesArray, likeButton) {
   likesArray.find(like => {
     if(like._id === currentUserId) {
       likeButton.classList.toggle('places__like-button_active');
-      console.log();
     }
   });
 }
