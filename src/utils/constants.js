@@ -2,7 +2,6 @@ const page = document.querySelector('.page');
 const popupOverlays = page.querySelectorAll('.popup');
 const editButton = page.querySelector('.profile__edit-button');
 const editAvatarButton = page.querySelector('.profile__edit-avatar');
-const saveButton = document.querySelector('.popup__save-button');
 const addButton = page.querySelector('.profile__add-button');
 const closeButtons = page.querySelectorAll('.popup__close-button');
 
@@ -51,4 +50,4 @@ const validationObject = {
 export {places, editButton, addButton, closeButtons, popupOverlays, profilePopup, fullName, job,
   avatar, nameInput, jobInput, imagePopup, bigImage, caption, newCardPopup, placeName, placeUrl,
   deletePopup, profileFormElement, newCardFormElement, validationObject, editAvatarButton,
-  editAvatarPopup, avatarFormElement, avatarInput, saveButton};
+  editAvatarPopup, avatarFormElement, avatarInput};
