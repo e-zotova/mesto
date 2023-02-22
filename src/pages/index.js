@@ -14,7 +14,7 @@ import {Api, apiConfig} from '../components/Api.js';
 import '../pages/index.css';
 
 const api = new Api(apiConfig);
-let user = {};
+const user = new UserInfo(fullName, job);
 let currentUserId = {};
 let cardList = {};
 
@@ -22,16 +22,13 @@ let cardList = {};
 api.getUser()
   .then((result) => {
     currentUserId = result._id;
-    user = new UserInfo(fullName, job);
     fullName.textContent = result.name;
     job.textContent = result.about;
     avatar.src = result.avatar;
   })
-
-// update button text
-function updateButtonText(button, text) {
-  button.textContent = text;
-}
+  .catch((err) => {
+    console.log(err);
+  })
 
 // create profile instance
 const profile = new PopupWithForm({
@@ -95,8 +92,13 @@ function handleCardClick(name, link) {
   image.open(name, link);
 }
 
-function handleConfirmDelete(id, cardElement) {
-  popupWithConfirmation.open(id, cardElement);
+function showLikedCards(likesArray, likeButton) {
+  likesArray.find(like => {
+    if(like._id === currentUserId) {
+      likeButton.classList.toggle('places__like-button_active');
+      console.log();
+    }
+  });
 }
 
 function showDeleteButton(owner, deleteButton) {
@@ -107,10 +109,14 @@ function showDeleteButton(owner, deleteButton) {
   }
 }
 
+function handleConfirmDelete(id, cardElement) {
+  popupWithConfirmation.open(id, cardElement);
+}
+
 function likeCard(id, likeCount, likeButton) {
   api.likeCard(id, likeCount)
     .then((result) => {
-      likeButton.classList.toggle('places__like-button_active')
+      likeButton.classList.toggle('places__like-button_active');
       likeCount.textContent = result.likes.length;
     })
     .catch((err) => {
@@ -121,7 +127,7 @@ function likeCard(id, likeCount, likeButton) {
 function unlikeCard(id, likeCount, likeButton) {
   api.unlikeCard(id, likeCount)
     .then((result) => {
-      likeButton.classList.remove('places__like-button_active')
+      likeButton.classList.remove('places__like-button_active');
       likeCount.textContent = result.likes.length;
     })
     .catch((err) => {
@@ -129,16 +135,10 @@ function unlikeCard(id, likeCount, likeButton) {
     });
 }
 
-function showLikedCards(likesArray, likeButton) {
-  likesArray.find(like => {
-    if(like._id === currentUserId) {
-      likeButton.classList.toggle('places__like-button_active');
-      console.log();
-    }
-  });
+function updateButtonText(button, text) {
+  button.textContent = text;
 }
 
-// generate card
 function generateCard(element, selector, handleCardClick,
          handleConfirmDelete, showDeleteButton, likeCard, unlikeCard, showLikedCards) {
   const card = new Card(element, selector, handleCardClick, handleConfirmDelete,
@@ -164,7 +164,6 @@ api.getInitialCards()
   .catch((err) => {
     console.log(err);
   });
-
 
 // create new card
 const cardPopup = new PopupWithForm({
@@ -207,7 +206,7 @@ const popupWithConfirmation = new PopupWithConfirmation({
 });
 popupWithConfirmation.setEventListeners();
 
-// add listeners for edit and add buttons
+// add listeners for buttons
 editButton.addEventListener('click', openProfile);
 
 editAvatarButton.addEventListener('click', openEditAvatar);
@@ -217,10 +216,11 @@ addButton.addEventListener('click', () => {
   cardPopup.open();
 });
 
-//validation for Profile form
+//validation for profile form
 const profileFormValidator = new FormValidator(validationObject, profileFormElement);
 profileFormValidator.enableValidation();
 
+//validation for avatar form
 const avatarFormValidator = new FormValidator(validationObject, avatarFormElement);
 avatarFormValidator.enableValidation();
 
