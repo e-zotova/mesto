@@ -14,7 +14,7 @@ import {Api, apiConfig} from '../components/Api.js';
 import '../pages/index.css';
 
 const api = new Api(apiConfig);
-const user = new UserInfo(fullName, job);
+const user = new UserInfo(fullName, job, avatar);
 let currentUserId = {};
 let cardList = {};
 
@@ -38,13 +38,13 @@ const profile = new PopupWithForm({
     api.setUser(data)
       .then((result) => {
         user.setUserInfo(result.name, result.about);
+        profile.close();
       })
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
         updateButtonText(saveButton, "Сохранить");
-        profile.close();
       })
    }
 });
@@ -66,14 +66,14 @@ const editAvatar = new PopupWithForm({
     updateButtonText(saveButton, "Сохранение...");
     api.editAvatar(data)
       .then((result) => {
-        avatar.src = result.avatar;
+        user.setUserAvatar(result.avatar);
+        editAvatar.close();
       })
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
         updateButtonText(saveButton, "Сохранить");
-        editAvatar.close();
       })
   }
 });
@@ -176,17 +176,22 @@ const cardPopup = new PopupWithForm({
                       showDeleteButton, likeCard, unlikeCard, showLikedCards),
           true
         )
+        cardPopup.close();
       })
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
         updateButtonText(saveButton, "Сохранить");
-        cardPopup.close();
       })
   }
 });
 cardPopup.setEventListeners();
+
+function openNewCard () {
+  newCardFormValidator.resetValidation();
+  cardPopup.open();
+}
 
 //delete card
 const popupWithConfirmation = new PopupWithConfirmation({
@@ -210,10 +215,7 @@ editButton.addEventListener('click', openProfile);
 
 editAvatarButton.addEventListener('click', openEditAvatar);
 
-addButton.addEventListener('click', () => {
-  newCardFormValidator.resetValidation();
-  cardPopup.open();
-});
+addButton.addEventListener('click', openNewCard);
 
 //validation for profile form
 const profileFormValidator = new FormValidator(validationObject, profileFormElement);
