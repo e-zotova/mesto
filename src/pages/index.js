@@ -15,20 +15,7 @@ import '../pages/index.css';
 
 const api = new Api(apiConfig);
 const user = new UserInfo(fullName, job, avatar);
-let currentUserId = {};
 let cardList = {};
-
-// get current user
-api.getUser()
-  .then((result) => {
-    currentUserId = result._id;
-    fullName.textContent = result.name;
-    job.textContent = result.about;
-    avatar.src = result.avatar;
-  })
-  .catch((err) => {
-    console.log(err);
-  })
 
 // create profile instance
 const profile = new PopupWithForm({
@@ -37,7 +24,7 @@ const profile = new PopupWithForm({
     updateButtonText(saveButton, "Сохранение...");
     api.setUser(data)
       .then((result) => {
-        user.setUserInfo(result.name, result.about);
+        user.setUserInfo(result);
         profile.close();
       })
       .catch((err) => {
@@ -66,7 +53,7 @@ const editAvatar = new PopupWithForm({
     updateButtonText(saveButton, "Сохранение...");
     api.editAvatar(data)
       .then((result) => {
-        user.setUserAvatar(result.avatar);
+        user.setUserInfo(result);
         editAvatar.close();
       })
       .catch((err) => {
@@ -90,22 +77,6 @@ image.setEventListeners();
 
 function handleCardClick(name, link) {
   image.open(name, link);
-}
-
-function showLikedCards(likesArray, likeButton) {
-  likesArray.find(like => {
-    if(like._id === currentUserId) {
-      likeButton.classList.toggle('places__like-button_active');
-    }
-  });
-}
-
-function showDeleteButton(owner, deleteButton) {
-  if(currentUserId === owner._id) {
-    deleteButton.style.display = 'block';
-  } else {
-    deleteButton.style.display = 'none';
-  }
 }
 
 function handleConfirmDelete(id, cardElement) {
@@ -138,31 +109,32 @@ function updateButtonText(button, text) {
   button.textContent = text;
 }
 
-function generateCard(element, selector, handleCardClick,
-         handleConfirmDelete, showDeleteButton, likeCard, unlikeCard, showLikedCards) {
-  const card = new Card(element, selector, handleCardClick, handleConfirmDelete,
-                        showDeleteButton, likeCard, unlikeCard, showLikedCards);
+function generateCard(element) {
+  const card = new Card(element, '#card-template', handleCardClick, handleConfirmDelete,
+                        likeCard, unlikeCard, user.getUserId());
   return card.generateCard();
 }
 
-//create cards from array
-api.getInitialCards()
+Promise.all([
+  api.getUser(),
+  api.getInitialCards()
+])
   .then((result) => {
+    const userData = result[0];
+    const cardsData = result[1];
+    user.setUserInfo(userData);
+
     cardList = new Section({
-      items: result,
+      items: cardsData,
       renderer: (element) => {
-        cardList.addItem(
-          generateCard(element, '#card-template', handleCardClick, handleConfirmDelete,
-                      showDeleteButton, likeCard, unlikeCard, showLikedCards),
-          false
-        );
+        cardList.addItem(generateCard(element), false);
       }
     }, places);
     cardList.renderItems();
   })
   .catch((err) => {
     console.log(err);
-  });
+  })
 
 // create new card
 const cardPopup = new PopupWithForm({
@@ -171,11 +143,7 @@ const cardPopup = new PopupWithForm({
     updateButtonText(saveButton, "Сохранение...");
     api.createCard(data)
       .then((cardData) => {
-        cardList.addItem(
-          generateCard(cardData, '#card-template', handleCardClick, handleConfirmDelete,
-                      showDeleteButton, likeCard, unlikeCard, showLikedCards),
-          true
-        )
+        cardList.addItem(generateCard(cardData), true)
         cardPopup.close();
       })
       .catch((err) => {

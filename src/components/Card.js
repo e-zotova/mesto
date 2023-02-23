@@ -1,6 +1,6 @@
  export default class Card {
-  constructor(data, templateSelector, handleCardClick,
-    handleConfirmDelete, showDeleteButton, likeCard, unlikeCard, showLikedCards) {
+  constructor(data, templateSelector, handleCardClick, handleConfirmDelete,
+              likeCard, unlikeCard, userId) {
     this._id = data._id;
     this._templateSelector = templateSelector;
     this._name = data.name;
@@ -9,11 +9,10 @@
     this._likesArray = data.likes;
     this._handleCardClick = handleCardClick;
     this._handleConfirmDelete = handleConfirmDelete;
-    this._showDeleteButton = showDeleteButton;
-    this._owner = data.owner;
     this._likeCard = likeCard;
     this._unlikeCard = unlikeCard;
-    this._showLikedCards = showLikedCards;
+    this._owner = data.owner;
+    this._userId = userId;
   }
 
   _getTemplate() {
@@ -23,6 +22,22 @@
     .cloneNode(true);
 
     return cardElement;
+  }
+
+  _showLikedCards(likesArray, likeButton) {
+    likesArray.find(like => {
+      if(like._id === this._userId) {
+        likeButton.classList.toggle('places__like-button_active');
+      }
+    });
+  }
+
+  _showDeleteButton(owner, deleteButton) {
+    if(this._userId === owner._id) {
+      deleteButton.style.display = 'block';
+    } else {
+      deleteButton.style.display = 'none';
+    }
   }
 
   _setEventListeners() {
@@ -51,8 +66,8 @@
     this._likeButton = this._element.querySelector('.places__like-button');
     this._likeCounter = this._element.querySelector('.places__like-counter');
     this._deleteButton = this._element.querySelector('.places__delete-button');
-    this._showDeleteButton(this._owner, this._deleteButton);
     this._setEventListeners();
+    this._showDeleteButton(this._owner, this._deleteButton);
     this._showLikedCards(this._likesArray, this._likeButton);
 
     this._cardName.textContent = this._name;
