@@ -1,7 +1,7 @@
 import {places, editButton, addButton, profilePopup, fullName, nameInput, job, avatar,
         jobInput, newCardPopup, imagePopup, profileFormElement, newCardFormElement,
         validationObject, deletePopup, editAvatarButton, editAvatarPopup,
-        avatarFormElement, avatarInput} from '../utils/constants.js';
+        avatarFormElement, avatarInput, apiConfig} from '../utils/constants.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
@@ -9,7 +9,7 @@ import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
-import {Api, apiConfig} from '../components/Api.js';
+import Api from '../components/Api.js';
 
 import '../pages/index.css';
 

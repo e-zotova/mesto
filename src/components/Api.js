@@ -6,7 +6,7 @@ const handleResponse = (res) => {
   }
 }
 
-export class Api {
+export default class Api {
   constructor(config) {
     this._headers = config.headers;
     this._baseUrl = config.baseUrl;
@@ -79,13 +79,5 @@ export class Api {
       headers: this._headers
     })
       .then(handleResponse)
-  }
-}
-
-export const apiConfig = {
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-60",
-  headers: {
-    authorization: "095d3f4f-e15b-43ab-9be7-70fc7024aa3b",
-    'Content-Type': 'application/json'
   }
 }

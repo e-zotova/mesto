@@ -38,6 +38,14 @@ const places = page.querySelector('.places');
 const placeName = page.querySelector('#placename');
 const placeUrl = page.querySelector('#url');
 
+const apiConfig = {
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-60",
+  headers: {
+    authorization: "095d3f4f-e15b-43ab-9be7-70fc7024aa3b",
+    'Content-Type': 'application/json'
+  }
+}
+
 const validationObject = {
   formSelector: '.popup__form',
   inputSelector: '.input',
@@ -50,4 +58,4 @@ const validationObject = {
 export {places, editButton, addButton, closeButtons, popupOverlays, profilePopup, fullName, job,
   avatar, nameInput, jobInput, imagePopup, bigImage, caption, newCardPopup, placeName, placeUrl,
   deletePopup, profileFormElement, newCardFormElement, validationObject, editAvatarButton,
-  editAvatarPopup, avatarFormElement, avatarInput};
+  editAvatarPopup, avatarFormElement, avatarInput, apiConfig};
