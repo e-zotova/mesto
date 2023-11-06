@@ -18,6 +18,7 @@
 
 ## Запуск проекта.
 `npm run build` - сборка проекта
+
 `npm run dev` - запуск проекта
 
 [Ссылка на проект в GitHub Pages](https://e-zotova.github.io/mesto/)
